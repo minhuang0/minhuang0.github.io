@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="rails,nginx," />
+  <meta name="keywords" content="vue," />
 
 
 
@@ -84,16 +84,28 @@
 
 
 
-<meta name="description" content="这里仅作笔记，不做教程，nginx wiki的更加详细噢.">
+<meta name="description" content="最近在使用vue写了一个项目，但目前来说就是一个公共页面，以后会陆续增加。碰到了预想不到的问题和坑，总体而言还是很有收获。
+
+初期的项目估时
+项目估时实际上是比较紧凑的，估时开始的时候按照的是用于一个业务线的估时方式，而且没给自己估计buffer时间；
+后面改为了通用页面，写出组件方式被多个业务线引用，整体的一个估时并没有变化。所以开发的这一周基本天天加班。好在是后期分开了部分需求，项目没有del">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用nginx来配置我的blog">
-<meta property="og:url" content="http://huangmin.me/2015/03/16/使用nginx配置我的blog/index.html">
+<meta property="og:title" content="最近写公共组件的反思">
+<meta property="og:url" content="http://huangmin.me/2017/01/19/最近写公共组件的反思/index.html">
 <meta property="og:site_name" content="Huangmin’s blog">
-<meta property="og:description" content="这里仅作笔记，不做教程，nginx wiki的更加详细噢.">
-<meta property="og:updated_time" content="2016-12-05T02:21:24.000Z">
+<meta property="og:description" content="最近在使用vue写了一个项目，但目前来说就是一个公共页面，以后会陆续增加。碰到了预想不到的问题和坑，总体而言还是很有收获。
+
+初期的项目估时
+项目估时实际上是比较紧凑的，估时开始的时候按照的是用于一个业务线的估时方式，而且没给自己估计buffer时间；
+后面改为了通用页面，写出组件方式被多个业务线引用，整体的一个估时并没有变化。所以开发的这一周基本天天加班。好在是后期分开了部分需求，项目没有del">
+<meta property="og:updated_time" content="2017-01-19T13:20:48.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用nginx来配置我的blog">
-<meta name="twitter:description" content="这里仅作笔记，不做教程，nginx wiki的更加详细噢.">
+<meta name="twitter:title" content="最近写公共组件的反思">
+<meta name="twitter:description" content="最近在使用vue写了一个项目，但目前来说就是一个公共页面，以后会陆续增加。碰到了预想不到的问题和坑，总体而言还是很有收获。
+
+初期的项目估时
+项目估时实际上是比较紧凑的，估时开始的时候按照的是用于一个业务线的估时方式，而且没给自己估计buffer时间；
+后面改为了通用页面，写出组件方式被多个业务线引用，整体的一个估时并没有变化。所以开发的这一周基本天天加班。好在是后期分开了部分需求，项目没有del">
 
 
 
@@ -121,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://huangmin.me/2015/03/16/使用nginx配置我的blog/"/>
+  <link rel="canonical" href="http://huangmin.me/2017/01/19/最近写公共组件的反思/"/>
 
 
 
 
 
-  <title> 使用nginx来配置我的blog | Huangmin’s blog </title>
+  <title> 最近写公共组件的反思 | Huangmin’s blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -268,7 +280,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://huangmin.me/2015/03/16/使用nginx配置我的blog/">
+  <link itemprop="mainEntityOfPage" href="http://huangmin.me/2017/01/19/最近写公共组件的反思/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="huangmin">
@@ -292,7 +304,7 @@
             
             
               
-                使用nginx来配置我的blog
+                最近写公共组件的反思
               
             
           </h1>
@@ -305,8 +317,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-03-16T00:00:00+08:00">
-                2015-03-16
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-19T00:00:00+08:00">
+                2017-01-19
               </time>
             
 
@@ -324,8 +336,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/programming/" itemprop="url" rel="index">
-                    <span itemprop="name">编程</span>
+                  <a href="/categories/思考/" itemprop="url" rel="index">
+                    <span itemprop="name">思考</span>
                   </a>
                 </span>
 
@@ -339,8 +351,8 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2015/03/16/使用nginx配置我的blog/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/03/16/使用nginx配置我的blog/" itemprop="commentCount"></span>
+                <a href="/2017/01/19/最近写公共组件的反思/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/19/最近写公共组件的反思/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -366,22 +378,49 @@
       
 
       
-        <p>这里仅作笔记，不做教程，<a href="http://wiki.ubuntu.org.cn/Nginx" target="_blank" rel="external">nginx wiki</a>的更加详细噢.<br><a id="more"></a>  </p>
-<p>以huangmin.me的rails blog部署在ubuntu系统下为例子：</p>
+        <p>最近在使用vue写了一个项目，但目前来说就是一个公共页面，以后会陆续增加。碰到了预想不到的问题和坑，总体而言还是很有收获。</p>
 <ul>
-<li>首先是需要安装nginx了 。</li>
+<li>初期的项目估时<ul>
+<li>项目估时实际上是比较紧凑的，估时开始的时候按照的是用于一个业务线的估时方式，而且没给自己估计buffer时间；</li>
+<li>后面改为了通用页面，写出组件方式被多个业务线引用，整体的一个估时并没有变化。所以开发的这一周基本天天加班。好在是后期分开了部分需求，项目没有delay.</li>
+<li>后续的话需要多考虑下这些内容以及需求变更带来的变化。</li>
 </ul>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-<span class="keyword">get</span> install nginx</div></pre></td></tr></table></figure>
-<ul>
-<li>需要在 /etc/nginx/nginx.conf(当然不一定是这个路径,有的可以配置在/etc/nginx/sites-available/目录下新建自己的一个配置可以)中添加如下代码:</li>
+</li>
+<li>沟通问题<ul>
+<li>开始需求不统一，没法进行开发，协调三方业务线的开发,PM，对于一个新人来说确实困难重重。</li>
+<li>后续大家都熟悉后沟通起来比较顺畅，但关于一些关键问题最好是在群里周知，不要私聊，免得出现问题。</li>
 </ul>
-<figure class="highlight mel"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">  listen       <span class="number">80</span>;  <span class="comment">//监听的端口</span></div><div class="line">  server_name www.huangmin.me huangmin.me; <span class="comment">//解析的域名</span></div><div class="line">  charset utf<span class="number">-8</span>;</div><div class="line">  location / &#123; </div><div class="line">    proxy_pass          http:<span class="comment">//huangmin_servers;</span></div><div class="line">    proxy_redirect      <span class="keyword">default</span>;</div><div class="line">    proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;</div><div class="line">    proxy_set_header    X-Real-IP $remote_addr;</div><div class="line">    proxy_set_header    Host $http_host;</div><div class="line">    proxy_next_upstream http_502 http_504 <span class="keyword">error</span> timeout invalid_header;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">upstream huangmin_servers&#123;</div><div class="line">    server localhost:<span class="number">2333</span>; <span class="comment">//转发的端口，这里跑在localhost:2333上面，所以只需指向本地即可。如果是在路由器的环境下面，可以指向一个内网的ip地址，并指向端口。</span></div><div class="line">    server localhost:<span class="number">2334</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>平缓重启Nginx</li>
+</li>
+<li>项目的构建<ul>
+<li>项目的构建使用的脚手架，底层迁移的已有项目。在特殊的地方做一些修改，这一块还是比较顺利。</li>
+<li>一个好的底层真的能省好多事情啊！</li>
 </ul>
-<figure class="highlight gams"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta"><span class="meta-keyword">$cd</span> /etc/nginx/</span></div><div class="line"><span class="comment">//平缓重启</span></div><div class="line"><span class="meta"><span class="meta-keyword">$nginx</span> -s reload</span></div><div class="line"><span class="comment">//停止</span></div><div class="line"><span class="meta"><span class="meta-keyword">$nginx</span> -s stop </span></div><div class="line"><span class="comment">//启动</span></div><div class="line"><span class="meta"><span class="meta-keyword">$nginx</span></span></div><div class="line"><span class="meta"><span class="meta-keyword">$nginx</span> start</span></div><div class="line"><span class="comment">//测试 </span></div><div class="line"><span class="meta"><span class="meta-keyword">$nginx</span> -t</span></div></pre></td></tr></table></figure>
-<ul>
-<li>在自己购买的域名服务商处更改自己的域名解析IP地址,指向项目服务器的公网地址。</li>
+</li>
+<li>皮肤的按需加载<ul>
+<li>做这个花了1.5PD, 初期考虑通过webpack编译成静态文件，然后在js中按需加载。后面没发找到文件每次打包后的hash就放弃了。其实可以同过一段脚本或者js插件去进行替换。</li>
+<li>后面通过chunk的方式去实现，没有仔细看官方文档，打包出来的chunk都会被包含在一个文件中，达不到目的。后面重新理了一遍文档知道是webpack.optimize.AggressiveMergingPlugin这个pluging将文件都打包到一起了.</li>
+</ul>
+</li>
+<li>业务线的底层统一<ul>
+<li>与别的业务线交互的时候碰到了底层不一致的问题，开始做的是为不同业务线兼容，后面改成了提供几种业务线的底层实现，具体的区分交给业务线去区分。期待年后将底层统一。</li>
+</ul>
+</li>
+<li>本身页面的布局<ul>
+<li>升级到vue2.0, 组件的最外层需要有一个div包裹着，不能像vue1一样多个div或者组件并列了。所以这一块实际上具体业务没有和一些通用的组件区分开来，到时候面出现了个怪异的问题花费了不少时间。</li>
+</ul>
+</li>
+<li>Vue<ul>
+<li>有一些坑，例如后添加的属性不会被监听，数组不会被监听。数据传递时方法的传递需要使用$emit或者是广播的这种形式。</li>
+</ul>
+</li>
+<li>被PM，RD催<ul>
+<li>在解决问题的时候总是被打断, 下次排个优先级，不重要的先让对方等等。</li>
+</ul>
+</li>
+<li>同事的帮助<ul>
+<li>有些地方不是很熟悉，还是感谢同事的帮助</li>
+</ul>
+</li>
 </ul>
 
       
@@ -406,9 +445,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/rails/" rel="tag"># rails</a>
-          
-            <a href="/tags/nginx/" rel="tag"># nginx</a>
+            <a href="/tags/vue/" rel="tag"># vue</a>
           
         </div>
       
@@ -417,8 +454,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/03/16/mysql一些好用的命令/" rel="next" title="mysql一些好用的命令">
-                <i class="fa fa-chevron-left"></i> mysql一些好用的命令
+              <a href="/2016/12/14/shareFEDeveloperTools/" rel="next" title="听《前端工程师的常用工具》分享总结">
+                <i class="fa fa-chevron-left"></i> 听《前端工程师的常用工具》分享总结
               </a>
             
           </div>
@@ -427,8 +464,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/04/01/capistrano部署blog/" rel="prev" title="rails capistrano 部署自己的blog">
-                rails capistrano 部署自己的blog <i class="fa fa-chevron-right"></i>
+              <a href="/2017/01/19/simulate_install_.app_file/" rel="prev" title="在simulate上面安装.app文件">
+                在simulate上面安装.app文件 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -455,8 +492,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/03/16/使用nginx配置我的blog/"
-           data-title="使用nginx来配置我的blog" data-url="http://huangmin.me/2015/03/16/使用nginx配置我的blog/">
+      <div class="ds-thread" data-thread-key="2017/01/19/最近写公共组件的反思/"
+           data-title="最近写公共组件的反思" data-url="http://huangmin.me/2017/01/19/最近写公共组件的反思/">
       </div>
     
   </div>
