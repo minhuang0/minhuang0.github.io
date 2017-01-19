@@ -1,0 +1,725 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="看了遍ruanyifeng老师写的构造函数的继承,感觉刚认识javascript。下面的内容以烂笔头记录为主，重新写了下加深记忆，移步链接里面文章写的更详细。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js中的构造函数的继承">
+<meta property="og:url" content="http://huangmin.me/2016/07/12/js中构造函数的继承/index.html">
+<meta property="og:site_name" content="Huangmin’s blog">
+<meta property="og:description" content="看了遍ruanyifeng老师写的构造函数的继承,感觉刚认识javascript。下面的内容以烂笔头记录为主，重新写了下加深记忆，移步链接里面文章写的更详细。">
+<meta property="og:updated_time" content="2016-12-05T02:21:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js中的构造函数的继承">
+<meta name="twitter:description" content="看了遍ruanyifeng老师写的构造函数的继承,感觉刚认识javascript。下面的内容以烂笔头记录为主，重新写了下加深记忆，移步链接里面文章写的更详细。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://huangmin.me/2016/07/12/js中构造函数的继承/"/>
+
+
+
+
+
+  <title> js中的构造函数的继承 | Huangmin’s blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?0785d303087b8345c92a7cfaba283e31";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Huangmin’s blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://huangmin.me/2016/07/12/js中构造函数的继承/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="huangmin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/9191270?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Huangmin’s blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Huangmin’s blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                js中的构造函数的继承
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-07-12T00:00:00+08:00">
+                2016-07-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/07/12/js中构造函数的继承/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/12/js中构造函数的继承/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>看了遍ruanyifeng老师写的<a href="http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance.html" target="_blank" rel="external">构造函数的继承</a>,感觉刚认识javascript。下面的内容以烂笔头记录为主，重新写了下加深记忆，移步链接里面文章写的更详细。</p>
+<a id="more"></a>  
+<p>js中对于构造函数的继承则有多种方式,因此能够共用公共的属性，减少重复代码的使用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">People</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.species = <span class="string">"人类"</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">PeopleFactory</span>(<span class="params">name,gender</span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.name = name,</div><div class="line">    <span class="keyword">this</span>.gender = gender</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="构造函数绑定"><a href="#构造函数绑定" class="headerlink" title="构造函数绑定"></a>构造函数绑定</h3><p>使用apply或call方法，将父类的构造函数绑定在子类对象上面。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">PeopleFactory</span>(<span class="params">name,gender</span>)</span>&#123;</div><div class="line">    People.apply(<span class="keyword">this</span>,<span class="built_in">arguments</span>);  <span class="comment">// or People.call(this,name,gender);</span></div><div class="line">    <span class="keyword">this</span>.name = name,</div><div class="line">    <span class="keyword">this</span>.gender = gender</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> xiaoming = <span class="keyword">new</span> PeopleFactory(<span class="string">"xiaoMing"</span>,<span class="string">"male"</span>);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(xiaoming.species); <span class="comment">//"人类"</span></div></pre></td></tr></table></figure>
+<h3 id="prototype模式"><a href="#prototype模式" class="headerlink" title="prototype模式"></a>prototype模式</h3><figure class="highlight elm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="title">console</span>.info(<span class="type">PeopleFactory</span>.proto<span class="keyword">type</span>.constructor == <span class="type">PeopleFactory</span>); //true</div><div class="line"><span class="type">PeopleFactory</span>.proto<span class="keyword">type</span> = new <span class="type">People</span>();</div><div class="line"><span class="title">console</span>.log(<span class="type">PeopleFactory</span>.proto<span class="keyword">type</span>.constructor == <span class="type">People</span>); //true</div><div class="line"><span class="type">PeopleFactory</span>.proto<span class="keyword">type</span>.constructor = <span class="type">PeopleFactory</span>;</div><div class="line"><span class="title">console</span>.info(<span class="type">PeopleFactory</span>.proto<span class="keyword">type</span>.constructor == <span class="type">PeopleFactory</span>); //true</div><div class="line"></div><div class="line"><span class="title">var</span> xiaoming = new <span class="type">PeopleFactory</span>(<span class="string">"xiaoMing"</span>,<span class="string">"male"</span>);</div><div class="line"><span class="title">console</span>.log(xiaoming.species); //<span class="string">"人类"</span></div><div class="line"><span class="title">console</span>.log(xiaoming.constructor == <span class="type">PeopleFactory</span>.proto<span class="keyword">type</span>.constructor); //true</div></pre></td></tr></table></figure>
+<p>构造函数的prototype发生变化时，它的prototype.constructor属性也会发生变化。实例对象的constructor属性等于构造函数的prototype.constructor属性。使用prototype模式继承构造函数时需要将继承链的constructor重新纠正成本身。</p>
+<h3 id="直接继承"><a href="#直接继承" class="headerlink" title="直接继承"></a>直接继承</h3><p>利用不变属性prototype的方式，跳过使用new People()出的实例对象经行继承。改写People构造函数:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">People</span>(<span class="params"></span>)</span>&#123;&#125;;</div><div class="line">People.prototype.species = <span class="string">"人类"</span>;</div><div class="line"></div><div class="line">PeopleFactory.prototype = People.prototype;</div><div class="line">PeopleFactory.prototype.constructor = PeopleFactory;</div><div class="line"></div><div class="line"><span class="keyword">var</span> xiaoming = <span class="keyword">new</span> PeopleFactory(<span class="string">"xiaoMing"</span>,<span class="string">"male"</span>);</div><div class="line"><span class="built_in">console</span>.log(xiaoming.species); <span class="comment">//"人类"</span></div></pre></td></tr></table></figure>
+<p>这种方式的缺点是PeopleFactory和People共用一个prototype对象，PeopleFactory中改变了，则People也改变了。并且People.peprototype.constructor = peopleFactory。</p>
+<h3 id="利用空对象作为中介"><a href="#利用空对象作为中介" class="headerlink" title="利用空对象作为中介"></a>利用空对象作为中介</h3><p>由于第三种方法有缺陷，则有现这种方法。</p>
+<figure class="highlight elm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="title">var</span> <span class="type">F</span> = function()&#123;&#125;;</div><div class="line"><span class="type">F</span>.proto<span class="keyword">type</span> = <span class="type">People</span>.prototype;</div><div class="line"><span class="type">PeopleFactory</span>.proto<span class="keyword">type</span> = new <span class="type">F</span>();</div><div class="line"><span class="type">PeopleFactory</span>.proto<span class="keyword">type</span>.constructor = <span class="type">PeopleFactory</span>;</div></pre></td></tr></table></figure>
+<p>封装之后变成<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">extend</span><span class="params">(Child, Parent)</span> </span>&#123;</div><div class="line">　　<span class="keyword">var</span> F = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;&#125;;</div><div class="line">　　F.prototype = <span class="keyword">Parent</span>.prototype;</div><div class="line">　　Child.prototype = <span class="keyword">new</span> F();</div><div class="line">　　Child.prototype.constructor = Child;</div><div class="line">　　Child.uber = <span class="keyword">Parent</span>.prototype; <span class="comment">//这个属性直接指向父类的prototype,设置的uber属性是继承完备性</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">extend(PeopleFactory,People);</div><div class="line"><span class="keyword">var</span> xiaoming = <span class="keyword">new</span> PeopleFactory(<span class="string">"xiaoMing"</span>,<span class="string">"male"</span>);</div><div class="line">console.log(xiaoming.species); <span class="comment">//"人类"</span></div></pre></td></tr></table></figure></p>
+<h3 id="拷贝继承"><a href="#拷贝继承" class="headerlink" title="拷贝继承"></a>拷贝继承</h3><p>将父类中的不变属性(prototype)拷贝到子类中来实现继承。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">extend2</span>(<span class="params">Child, Parent</span>) </span>&#123;</div><div class="line">　　<span class="keyword">var</span> p = Parent.prototype;</div><div class="line">　　<span class="keyword">var</span> c = Child.prototype;</div><div class="line">　　<span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> p) &#123;</div><div class="line">　　　　c[i] = p[i];</div><div class="line">　　&#125;</div><div class="line">　　c.uber = p;</div><div class="line">&#125;</div><div class="line">extend2(PeopleFactory,People);</div><div class="line"><span class="keyword">var</span> xiaoming = <span class="keyword">new</span> PeopleFactory(<span class="string">"xiaoMing"</span>,<span class="string">"male"</span>);</div><div class="line"><span class="built_in">console</span>.log(xiaoming.species); <span class="comment">//"人类"</span></div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/01/InlineBlockAndFloat/" rel="next" title="实现浮动使用inline-block和float的区别">
+                <i class="fa fa-chevron-left"></i> 实现浮动使用inline-block和float的区别
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/12/js中Call和Apply的区别/" rel="prev" title="js中Call()和Apply()的区别">
+                js中Call()和Apply()的区别 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/12/js中构造函数的继承/"
+           data-title="js中的构造函数的继承" data-url="http://huangmin.me/2016/07/12/js中构造函数的继承/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars0.githubusercontent.com/u/9191270?v=3&s=460"
+               alt="huangmin" />
+          <p class="site-author-name" itemprop="name">huangmin</p>
+          <p class="site-description motion-element" itemprop="description">求知要踏踏实实,做人要老老实实</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/minhuang0" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#构造函数绑定"><span class="nav-number">1.</span> <span class="nav-text">构造函数绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#prototype模式"><span class="nav-number">2.</span> <span class="nav-text">prototype模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#直接继承"><span class="nav-number">3.</span> <span class="nav-text">直接继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用空对象作为中介"><span class="nav-number">4.</span> <span class="nav-text">利用空对象作为中介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拷贝继承"><span class="nav-number">5.</span> <span class="nav-text">拷贝继承</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huangmin</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"huangm"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

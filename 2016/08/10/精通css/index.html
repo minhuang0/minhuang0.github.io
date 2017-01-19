@@ -1,0 +1,878 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="css," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="本篇内容：    将自己在读这本书时自己不清楚或不知道的内容记录下来.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="读<<精通css第二版>>笔记">
+<meta property="og:url" content="http://huangmin.me/2016/08/10/精通css/index.html">
+<meta property="og:site_name" content="Huangmin’s blog">
+<meta property="og:description" content="本篇内容：    将自己在读这本书时自己不清楚或不知道的内容记录下来.">
+<meta property="og:updated_time" content="2016-12-05T02:21:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="读<<精通css第二版>>笔记">
+<meta name="twitter:description" content="本篇内容：    将自己在读这本书时自己不清楚或不知道的内容记录下来.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://huangmin.me/2016/08/10/精通css/"/>
+
+
+
+
+
+  <title> 读<<精通css第二版>>笔记 | Huangmin’s blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?0785d303087b8345c92a7cfaba283e31";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Huangmin’s blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://huangmin.me/2016/08/10/精通css/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="huangmin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/9191270?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Huangmin’s blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Huangmin’s blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                读<<精通css第二版>>笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-10T00:00:00+08:00">
+                2016-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/08/10/精通css/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/10/精通css/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本篇内容：<br>    将自己在读这本书时自己不清楚或不知道的内容记录下来.</p>
+<a id="more"></a>  
+<h2 id="第二章-为样式找到应用目标"><a href="#第二章-为样式找到应用目标" class="headerlink" title="第二章: 为样式找到应用目标"></a>第二章: 为样式找到应用目标</h2><p>元素选择器 ID选择器 Class选择器 通用选择器</p>
+<h3 id="伪类选择器"><a href="#伪类选择器" class="headerlink" title="伪类选择器"></a>伪类选择器</h3><p>链接伪类:link :visited,用于锚元素<br>动态伪类 :active :hover :focus<br> IE6 应用于锚链接的:active和:hover选择器 忽略:focus,<br> IE7 任何元素支持:hover,忽略 :active :focus</p>
+<p>// 例子: 已访问链接和未访问链接鼠标悬停效果<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:visited</span><span class="selector-pseudo">:hover</span>&#123;<span class="attribute">color</span>: olive&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="高级选择器"><a href="#高级选择器" class="headerlink" title="高级选择器"></a>高级选择器</h3><p>子选择器,如 <code>ul &gt; li</code><br>IE7和高于其版本的都支持,在父类和子类之间有注释会产生BUG<br>IE6可以通过通用选择器模拟子选择器效果</p>
+<p>相邻元素选择器, 如 <code>h2 + p</code>,指h2并列的第一个p标签</p>
+<p>属性选择器,IE7及其以上支持<br>p[title]<br>p[title]:hover</p>
+<p>IE6不支持属性选择器<br>可以通过下面的方式设置两种不通浏览器的风格</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#header</span>&#123;</div><div class="line">    <span class="attribute">background</span>: <span class="built_in">url</span>(branding_bw.png) repeat-y left top;</div><div class="line">&#125;</div><div class="line"><span class="selector-attr">[id="header"]</span>&#123;</div><div class="line">    <span class="attribute">background</span>: <span class="built_in">url</span>(branding_color.png)  repeat-y left top;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>层叠</p>
+<ul>
+<li>标有!important的用户样式</li>
+<li>标有!important的作者样式</li>
+<li>作者样式</li>
+<li>用户样式</li>
+<li>浏览器/用户代理应用的样式</li>
+</ul>
+<p>选择器优先级,特殊性</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>选择器</th>
+<th>特殊性(a,b,c,d)</th>
+<th>以10为基数的特殊性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>Style=””</td>
+<td>1,0,0,0</td>
+<td>1000</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>#wrapper #content{}</td>
+<td>0,2,0,0</td>
+<td>200</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>#content .datePosted{}</td>
+<td>0,1,1,0</td>
+<td>110</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>div#content</td>
+<td>0,1,0,1</td>
+<td>101</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>#content</td>
+<td>0,1,0,0</td>
+<td>100</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>p.comment .dateposted{}</td>
+<td>0,0,2,1</td>
+<td>21</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>p.comment{}</td>
+<td>0,0,1,1</td>
+<td>11</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>div p{}</td>
+<td>0,0,0,2</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>p{}</td>
+<td>0,0,0,1</td>
+<td>1</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>a = 行内样式</li>
+<li>b = ID选择器总数</li>
+<li>c = 类，伪类，属性选择器的总数</li>
+<li>d = 类型选择器和伪类选择器的数量</li>
+</ul>
+<p>文档样式分割，但下面这种方式导入样式比链接样式表慢，影响下载时间，而且老式浏览器对于同时传输的文件数量有要求，所以更倾向于单一样式表而不是多个小文件。</p>
+<figure class="highlight elm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/* css文件间可以使用<span class="keyword">import</span>导入其他样式表 */</div><div class="line">@<span class="keyword">import</span> url(/css/layout.css)</div></pre></td></tr></table></figure>
+<p>在单一样式表中分割可以使用下面的注释来区分不同的模块</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/* @<span class="keyword">group</span> <span class="title">typography</span> */</div></pre></td></tr></table></figure>
+<p>这样通过搜索<code>@group typ</code>就能够快速的定位了</p>
+<p>样式文本结构如下:</p>
+<ul>
+<li>一般性样式 <code>* @group gemeral styles</code><ul>
+<li>主体样式</li>
+<li>reset样式</li>
+<li>链接</li>
+<li>标题</li>
+<li>其他元素</li>
+</ul>
+</li>
+<li>辅助样式 <code>@group helper styles</code><ul>
+<li>表单</li>
+<li>通知和错误</li>
+<li>一致的条目</li>
+</ul>
+</li>
+<li>页面结构 <code>@group page structure</code><ul>
+<li>标题，页脚，导航</li>
+<li>布局</li>
+<li>其他页面结构</li>
+</ul>
+</li>
+<li>页面组件 <code>@group page components</code><ul>
+<li>各个页面</li>
+</ul>
+</li>
+<li>覆盖 ``@group overrides</li>
+</ul>
+<p>@todo 需要修改，复查的代码<br>@bugfix 表示代码或特定浏览器遇到的问题<br>@workaround 不完善的权益之计</p>
+<h3 id="第三章-可视化格式模型"><a href="#第三章-可视化格式模型" class="headerlink" title="第三章 可视化格式模型"></a>第三章 可视化格式模型</h3><p>box-sizing:<br>标准盒模型(border-box): 内容区域width + 内边距width + 外边距width = width<br>IE非标准盒模型(content-box): width = 外边距width + 内边距width + 剩余的width(内容区域)<br>差异是标准盒模型由content,pandding,margin决定width,非标准盒模型固定width而压缩content</p>
+<p>inline-block:   让元素能够像行内（inline）元素一样排列，内容符合块级框（block）的行为，能够设置高度，宽度,垂直外边距</p>
+<p>block:<br>垂直排列，垂直距离由verticle margin计算（重叠外边距）</p>
+<p>position</p>
+<p>relative: 占据原来位置和空间，发生偏移时会覆盖别的框<br>absoulte: 不占据空间，相对于距离它最近已定位的祖先元素而定位<br>fixed: 固定定位是绝对定位的一种,IE6不支持,IE7部分支持,实现会有些BUG<br>浮动:  浮动框向左右移动直到碰到包含框或者碰到另一个浮动的边缘，高度不一样时会卡住。<br>    清除浮动(下面的方法不适用于IE6):<br>        <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.clear</span><span class="selector-pseudo">:after</span>&#123;</div><div class="line">    <span class="attribute">content</span>: <span class="string">''</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">0</span>;</div><div class="line">    <span class="attribute">visibility</span>: hidden;</div><div class="line">    <span class="attribute">display</span>: block;</div><div class="line">    <span class="attribute">clear</span>: both;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="第四章-背景图像效果"><a href="#第四章-背景图像效果" class="headerlink" title="第四章 背景图像效果"></a>第四章 背景图像效果</h3><h4 id="背景图"><a href="#背景图" class="headerlink" title="背景图"></a>背景图</h4><p>垂直渐变</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span>&#123;</div><div class="line">    <span class="attribute">background</span>: <span class="number">#ccc</span> url(<span class="string">img/gradient.png</span>) repeat-x; <span class="comment">//为了更贴近gradient.png最终的渐变色使背景无重叠</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>css圆角边框</p>
+<ul>
+<li>插入四张不同背景图在四个不同的标签上</li>
+<li>山顶角(图片变成透明的只遮住部分直角地方),由background-color控制边角颜色<br>css3圆角边框</li>
+<li>在一个标签上使用四张背景图,每张的图片,background-position,background-repeat用<code>,</code>分隔</li>
+<li>border-radius 属性</li>
+<li>border-image ,九分法缩放<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.box</span>&#123;</div><div class="line">     <span class="attribute">-webkit-border-image</span>: <span class="built_in">url</span>(img/corners.gif) <span class="number">25%</span> <span class="number">25%</span> <span class="number">25%</span> <span class="number">25%</span> / <span class="number">25px</span> round round;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="投影"><a href="#投影" class="headerlink" title="投影"></a>投影</h4><p>简单投影<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.img-wrapper</span>&#123;</div><div class="line">    <span class="attribute">background</span>: <span class="built_in">url</span>(img/shadow.git) no-repeat bottom right;</div><div class="line">    <span class="attribute">clear</span>: right;</div><div class="line">    <span class="attribute">float</span>: left;</div><div class="line">    <span class="attribute">position</span>: relative;  <span class="comment">/* 兼容IE6 */</span></div><div class="line">&#125;</div><div class="line"><span class="selector-class">.img-wrapper</span> <span class="selector-tag">img</span>&#123;</div><div class="line">    <span class="attribute">margin</span>: -<span class="number">5px</span> <span class="number">5px</span> <span class="number">5px</span> -<span class="number">5px</span>;</div><div class="line">    <span class="attribute">display</span>: block; <span class="comment">/* 兼容IE6 */</span></div><div class="line">    <span class="attribute">position</span>: relative;   <span class="comment">/* 兼容IE6 */</span></div><div class="line">&#125;</div><div class="line"><span class="comment">/* 第二种方式 */</span></div><div class="line"><span class="selector-class">.img-wrapper</span> <span class="selector-tag">img2</span>&#123;</div><div class="line">    <span class="attribute">position</span>: relative;</div><div class="line">    <span class="attribute">left</span>: -<span class="number">5px</span>;</div><div class="line">    <span class="attribute">top</span>: -<span class="number">5px</span>;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"><span class="comment">/* 使用css3 box-shadow属性 */</span></div><div class="line"><span class="selector-tag">img</span>&#123;</div><div class="line">    <span class="attribute">box-shadow</span>: <span class="number">3px</span> <span class="number">3px</span> <span class="number">6px</span> <span class="number">#666</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>透明度</p>
+<p>使用opactiy后改元素的子类元素也继承这个属性<br>RGBa,a值的是alpha透明度这种情况下能够透明<br>png文件格式能够支持alpha透明度,IE6不支持,可以添加过滤器让它支持<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">div</span>&#123;</div><div class="line">    <span class="attribute">filter</span>:progid:DXImageTransform.Microsoft.<span class="built_in">AlpahImageLoader</span>(src=<span class="string">'/img/my-image.png'</span>,sizingMethod=<span class="string">'crop'</span>);</div><div class="line">    <span class="attribute">background</span>: none;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="第七章"><a href="#第七章" class="headerlink" title="第七章"></a>第七章</h3><p>border-spacing可以控制单元格之间的距离，IE7及以下版本不支持,可以使用cellspcing属性</p>
+<p>label与input关联</p>
+<p>隐式方式<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;label&gt;<span class="xml"><span class="tag">&lt;<span class="name">input</span>&gt;</span><span class="tag">&lt;/<span class="name">input</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">label</span>&gt;</span></span></div></pre></td></tr></table></figure></p>
+<p>显式方式 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;label&gt;<span class="xml"><span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><span class="xml"><span class="tag">&lt;<span class="name">input</span>&gt;</span><span class="tag">&lt;/<span class="name">input</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<p>label for 对于input的ID，input name对应表单提交的key</p>
+<p>fieldset用来分割不同的表单块<br>legend位于fieldset里面</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">legend</span>&gt;</span>title or explanatory caption<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">label</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">input</span>&gt;</span><span class="tag">&lt;/<span class="name">input</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>注意: </p>
+<p>input[type=’text’] 属性选择器不能再IE6及其以下版本使用</p>
+<p>在编写表单的时候 :focus伪类选择器用在input,textarea上面能够提高用户体验</p>
+<p>强调label的重要性可以在里面加入em,strong标签，将label 后面的input对齐可以</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">label</span>&#123;</div><div class="line">    <span class="attribute">float</span>: left;</div><div class="line">    <span class="attribute">width</span>: <span class="number">10rem</span>;</div><div class="line">    <span class="attribute">cursor</span>: pointer;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="读完评价"><a href="#读完评价" class="headerlink" title="读完评价"></a>读完评价</h3><p>看完了整本书，有些在电脑上看的，有的在地铁上手机看的。陆陆续续收获不少，解决了我一些不太清晰的地方，也对一些属性或名词有更深刻的理解（如position, float）,对于这块地方还查阅了别人的博客来交叉理解。</p>
+<p>这是一本好的”API”，也是一本好的入门教材，以后遇到一些类似的问题还要来翻一翻。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/css/" rel="tag"># css</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/01/webpack和react实践/" rel="next" title="webpack和react踩坑笔记">
+                <i class="fa fa-chevron-left"></i> webpack和react踩坑笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/15/windows下的终端工具/" rel="prev" title="windows下的终端工具">
+                windows下的终端工具 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/10/精通css/"
+           data-title="读<<精通css第二版>>笔记" data-url="http://huangmin.me/2016/08/10/精通css/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars0.githubusercontent.com/u/9191270?v=3&s=460"
+               alt="huangmin" />
+          <p class="site-author-name" itemprop="name">huangmin</p>
+          <p class="site-description motion-element" itemprop="description">求知要踏踏实实,做人要老老实实</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/minhuang0" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-为样式找到应用目标"><span class="nav-number">1.</span> <span class="nav-text">第二章: 为样式找到应用目标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#伪类选择器"><span class="nav-number">1.1.</span> <span class="nav-text">伪类选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高级选择器"><span class="nav-number">1.2.</span> <span class="nav-text">高级选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三章-可视化格式模型"><span class="nav-number">1.3.</span> <span class="nav-text">第三章 可视化格式模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第四章-背景图像效果"><span class="nav-number">1.4.</span> <span class="nav-text">第四章 背景图像效果</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景图"><span class="nav-number">1.4.1.</span> <span class="nav-text">背景图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#投影"><span class="nav-number">1.4.2.</span> <span class="nav-text">投影</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第七章"><span class="nav-number">1.5.</span> <span class="nav-text">第七章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#读完评价"><span class="nav-number">1.6.</span> <span class="nav-text">读完评价</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huangmin</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"huangm"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

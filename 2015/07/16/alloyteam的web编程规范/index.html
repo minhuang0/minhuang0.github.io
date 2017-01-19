@@ -1,0 +1,771 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="html,css," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="最近在维护公司已有项目的时候,发现每个人都有不同的代码书写风格,从文件命名到变量命名,注释到模块封装，就像战国时代百家争鸣一样。找文档看别人的团队是怎么统一规范的，加以学习借鉴。
+在阅读的过程中也发现自己在写的过程中也有一些不是主流。我的个人理解是标准规范不一定是100%正确的,讲个笑话{ 换行派 与 不换行派。每个人都也许能说出理由说自己这种书写方式的优点，但我觉得 在某种程度上遵从世界上多数程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="alloy team的编程规范">
+<meta property="og:url" content="http://huangmin.me/2015/07/16/alloyteam的web编程规范/index.html">
+<meta property="og:site_name" content="Huangmin’s blog">
+<meta property="og:description" content="最近在维护公司已有项目的时候,发现每个人都有不同的代码书写风格,从文件命名到变量命名,注释到模块封装，就像战国时代百家争鸣一样。找文档看别人的团队是怎么统一规范的，加以学习借鉴。
+在阅读的过程中也发现自己在写的过程中也有一些不是主流。我的个人理解是标准规范不一定是100%正确的,讲个笑话{ 换行派 与 不换行派。每个人都也许能说出理由说自己这种书写方式的优点，但我觉得 在某种程度上遵从世界上多数程">
+<meta property="og:updated_time" content="2016-12-05T02:21:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="alloy team的编程规范">
+<meta name="twitter:description" content="最近在维护公司已有项目的时候,发现每个人都有不同的代码书写风格,从文件命名到变量命名,注释到模块封装，就像战国时代百家争鸣一样。找文档看别人的团队是怎么统一规范的，加以学习借鉴。
+在阅读的过程中也发现自己在写的过程中也有一些不是主流。我的个人理解是标准规范不一定是100%正确的,讲个笑话{ 换行派 与 不换行派。每个人都也许能说出理由说自己这种书写方式的优点，但我觉得 在某种程度上遵从世界上多数程">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://huangmin.me/2015/07/16/alloyteam的web编程规范/"/>
+
+
+
+
+
+  <title> alloy team的编程规范 | Huangmin’s blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?0785d303087b8345c92a7cfaba283e31";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Huangmin’s blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://huangmin.me/2015/07/16/alloyteam的web编程规范/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="huangmin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/9191270?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Huangmin’s blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Huangmin’s blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                alloy team的编程规范
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-07-16T00:00:00+08:00">
+                2015-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2015/07/16/alloyteam的web编程规范/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/16/alloyteam的web编程规范/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近在维护公司已有项目的时候,发现每个人都有不同的代码书写风格,从文件命名到变量命名,注释到模块封装，就像战国时代百家争鸣一样。找文档看别人的团队是怎么统一规范的，加以学习借鉴。</p>
+<p>在阅读的过程中也发现自己在写的过程中也有一些不是主流。<br>我的个人理解是标准规范不一定是100%正确的,讲个笑话<code>{</code> <strong><em>换行派</em></strong> 与 <strong><em>不换行派</em></strong>。<br>每个人都也许能说出理由说自己这种书写方式的优点，<br>但我觉得 <strong><em>在某种程度上遵从世界上多数程序员及大牛的书写规范，在与人协同工作时,提交开源代码时,互相code review时都有一定程度的帮助与增加编码幸福感。</em></strong></p>
+<p>原文<a href="https://github.com/AlloyTeam/CodeGuide" target="_blank" rel="external">Code Guide by @AlloyTeam</a>写的更全面,这里做自省和记录。</p>
+<a id="more"></a>
+<h3 id="文件及文件夹命名"><a href="#文件及文件夹命名" class="headerlink" title="文件及文件夹命名"></a>文件及文件夹命名</h3><ul>
+<li>project_name</li>
+<li>file_folder plural(scripts,styles)</li>
+<li>js_file.js </li>
+<li>css_file.js</li>
+<li>html_file.js</li>
+</ul>
+<h3 id="共同地方"><a href="#共同地方" class="headerlink" title="共同地方"></a>共同地方</h3><ul>
+<li>soft tab（4个空格）</li>
+</ul>
+<h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><ul>
+<li>属性小写内容双引号,自动闭合标签(<a href="https://dev.w3.org/html5/spec-author-view/syntax.html#syntax-start-tag" target="_blank" rel="external">HTML规范</a>)结尾不加 <code>/</code> </li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="selector-tag">img</span> src=<span class="string">"images/company_logo.png"</span> alt=<span class="string">"Company"</span>&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>lang属性指定<a href="https://msdn.microsoft.com/en-us/library/ms533052.aspx" target="_blank" rel="external">语言</a></li>
+<li>编码 <code>&lt;meta charset=&quot;UTF-8&quot;&gt;</code></li>
+<li>IE兼容模式 <code>&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=Edge&quot;&gt;</code></li>
+<li>引入js和css时不需要加<code>text/css</code> 和 <code>text/javascript</code>,HTML5规范定为默认的</li>
+<li>属性顺序<ul>
+<li>class</li>
+<li>id</li>
+<li>name</li>
+<li>data-*</li>
+<li>src, for, type, href, value , max-length, max, min, pattern</li>
+<li>placeholder, title, alt</li>
+<li>aria-*, role</li>
+<li>required, readonly, disabled</li>
+</ul>
+</li>
+<li>boolean属性的存在表示取值为true，不存在则表示取值为false</li>
+</ul>
+<h3 id="CSS-SCSS"><a href="#CSS-SCSS" class="headerlink" title="CSS,SCSS"></a>CSS,SCSS</h3><ul>
+<li>属性 <code>0.5 -&gt; .5</code>, <code>0px -&gt; 0</code> , <code>border: 0 -&gt; border: none</code></li>
+<li><code>{</code> <code>}</code> <code>&gt;</code> <code>+</code> <code>/*</code> <code>*/</code>类似于js中运算符前后空格</li>
+<li><code>}</code>、文件末尾、scss中嵌套尾换行</li>
+<li>ID、变量、函数、placeholder使用驼峰命名</li>
+<li>颜色使用小写字母尽量用简写</li>
+<li>marign padding使用简写 font background transition animation尽量按顺序分开写</li>
+<li>@import不用<code>_</code>和<code>.sccc</code>后缀</li>
+<li>嵌套层数不过5</li>
+</ul>
+<h3 id="JavsScript-这块与-lt-gt-中提到的书写规范差不多"><a href="#JavsScript-这块与-lt-gt-中提到的书写规范差不多" class="headerlink" title="JavsScript(这块与&lt;&gt;中提到的书写规范差不多)"></a>JavsScript(这块与&lt;<javascript语言精粹>&gt;中提到的书写规范差不多)</javascript语言精粹></h3><p>也可以看<a href="https://github.com/airbnb/javascript" target="_blank" rel="external">airbnb javascript的规范</a></p>
+<ul>
+<li>运算符前后空格,<code>i++</code> <code>++i</code> <code>b: 1</code> 这种除外</li>
+<li>变量声明,注释块,文件最后空行</li>
+<li>属性声明<code>b: 1,</code> <code>{</code>, <code>else</code> <code>catch</code>, <code>finally</code> 变量赋值后换行</li>
+<li>文档注释参考<a href="http://usejsdoc.org/" target="_blank" rel="external">usejsdoc</a>和<a href="http://yuri4ever.github.io/jsdoc/" target="_blank" rel="external">JSDoc Guide</a></li>
+<li>外层使用 <code>&#39;</code> 单引号</li>
+<li>函数变量都用驼峰式命名,特殊 ID,URL,Android,iOS JQuery对象变量以$开头</li>
+<li>数组对象最后不要有逗号,对象属性名不加<code>&#39;</code></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/html/" rel="tag"># html</a>
+          
+            <a href="/tags/css/" rel="tag"># css</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/04/01/capistrano部署blog/" rel="next" title="rails capistrano 部署自己的blog">
+                <i class="fa fa-chevron-left"></i> rails capistrano 部署自己的blog
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/09/17/toolsConfig/" rel="prev" title="工具配置">
+                工具配置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/07/16/alloyteam的web编程规范/"
+           data-title="alloy team的编程规范" data-url="http://huangmin.me/2015/07/16/alloyteam的web编程规范/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars0.githubusercontent.com/u/9191270?v=3&s=460"
+               alt="huangmin" />
+          <p class="site-author-name" itemprop="name">huangmin</p>
+          <p class="site-description motion-element" itemprop="description">求知要踏踏实实,做人要老老实实</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/minhuang0" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件及文件夹命名"><span class="nav-number">1.</span> <span class="nav-text">文件及文件夹命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#共同地方"><span class="nav-number">2.</span> <span class="nav-text">共同地方</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML"><span class="nav-number">3.</span> <span class="nav-text">HTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-SCSS"><span class="nav-number">4.</span> <span class="nav-text">CSS,SCSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavsScript-这块与-lt-gt-中提到的书写规范差不多"><span class="nav-number">5.</span> <span class="nav-text">JavsScript(这块与<>中提到的书写规范差不多)</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huangmin</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"huangm"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

@@ -1,0 +1,846 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript,ES6," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="记录一些学习过程中的收获,文档地址">
+<meta property="og:type" content="article">
+<meta property="og:title" content="读ECMAScript 6记录">
+<meta property="og:url" content="http://huangmin.me/2016/03/06/ECMAScript6/index.html">
+<meta property="og:site_name" content="Huangmin’s blog">
+<meta property="og:description" content="记录一些学习过程中的收获,文档地址">
+<meta property="og:updated_time" content="2016-12-05T02:21:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="读ECMAScript 6记录">
+<meta name="twitter:description" content="记录一些学习过程中的收获,文档地址">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://huangmin.me/2016/03/06/ECMAScript6/"/>
+
+
+
+
+
+  <title> 读ECMAScript 6记录 | Huangmin’s blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?0785d303087b8345c92a7cfaba283e31";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Huangmin’s blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://huangmin.me/2016/03/06/ECMAScript6/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="huangmin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/9191270?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Huangmin’s blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Huangmin’s blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                读ECMAScript 6记录
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-03-06T00:00:00+08:00">
+                2016-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/03/06/ECMAScript6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/06/ECMAScript6/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>记录一些学习过程中的收获,<a href="http://es6.ruanyifeng.com/" target="_blank" rel="external">文档地址</a></p>
+<a id="more"></a>  
+<h3 id="let-不变量提升-不能重复声明-对当前作用域起作用-暂时性死区"><a href="#let-不变量提升-不能重复声明-对当前作用域起作用-暂时性死区" class="headerlink" title="let 不变量提升,不能重复声明,对当前作用域起作用,暂时性死区"></a>let 不变量提升,不能重复声明,对当前作用域起作用,暂时性死区</h3><p>let和var不同的一点是let不会变量提升,只作用于当前作用域(块级作用域)</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> tmp = <span class="string">"myTmp"</span>;</div><div class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</div><div class="line">    <span class="built_in">console</span>.log(tmp); <span class="regexp">// ReferenceError   //</span>TDZ(temporal dead zone<span class="function"> -&gt;</span> <span class="string">'暂时性死区'</span>)开始</div><div class="line">    <span class="keyword">let</span> tmp = <span class="string">'tmp'</span>;   <span class="regexp">//TDZ结束，在</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>暂时性死区的本质是为了防止在变量声明前就使用该变量,只有等到声明后才可以使用</p>
+<p>arg默认被声明了,此时不能重复声明arg<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params">arg</span>)</span>&#123;</div><div class="line">	<span class="keyword">let</span> arg; <span class="comment">//报错</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>有个非常有趣的例子: </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [];</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</div><div class="line">  a[i] = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(i);</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line">a[<span class="number">6</span>](); <span class="comment">// 10</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [];</div><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</div><div class="line">  a[i] = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(i);</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line">a[<span class="number">6</span>](); <span class="comment">// 6</span></div></pre></td></tr></table></figure>
+<p>使用let只在当前作用域生效,而var在全局范围都有效,所以此时输出是i的值为10。</p>
+<h3 id="作用域-全局作用域-函数作用域-块级作用域"><a href="#作用域-全局作用域-函数作用域-块级作用域" class="headerlink" title="作用域: 全局作用域,函数作用域,块级作用域"></a>作用域: 全局作用域,函数作用域,块级作用域</h3><figure class="highlight clojure"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    console.info(<span class="string">"块级作用域"</span>)<span class="comment">;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>块级作用域避免内层变量对全局变量的改写和泄漏导致全局新增变量</p>
+<p>块级作用域能够让立即执行匿名函数（IIFE）不必须了</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// IIFE写法</span></div><div class="line">(function () &#123;</div><div class="line">  <span class="built_in">var</span> tmp = <span class="params">...</span>;</div><div class="line">  <span class="params">...</span></div><div class="line">&#125;());</div><div class="line"></div><div class="line"><span class="comment">// 块级作用域写法</span></div><div class="line">&#123;</div><div class="line">  <span class="keyword">let</span> tmp = <span class="params">...</span>;</div><div class="line">  <span class="params">...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="const为常量-需要立即声明"><a href="#const为常量-需要立即声明" class="headerlink" title="const为常量,需要立即声明"></a>const为常量,需要立即声明</h3><p>const命令,对常量声明后不可改变;与let相同点:块级作用域,无变量提升,不可重复声明,存在暂时性死区</p>
+<h3 id="ES6变量声明方法"><a href="#ES6变量声明方法" class="headerlink" title="ES6变量声明方法"></a>ES6变量声明方法</h3><ul>
+<li>var</li>
+<li>function</li>
+<li>let</li>
+<li>const</li>
+<li>import</li>
+<li>class</li>
+</ul>
+<p>let,const,class声明的全局变量，不属于全局对象(global,window)的属性</p>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> b = <span class="number">1</span>;</div><div class="line"><span class="built_in">window</span>.b <span class="comment">// undefined</span></div></pre></td></tr></table></figure>
+<p>node里面的全局变量是global,浏览器里面的是window</p>
+<h3 id="结构赋值"><a href="#结构赋值" class="headerlink" title="结构赋值"></a>结构赋值</h3><p>数组用[]按顺序结构,对象用{}，变量需要与属性同名才能取到正确值而不是undefined</p>
+<p>解构赋值的内部机制，是先找到同名属性，然后再赋给对应的变量<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var &#123; bar, foo &#125; = &#123; <span class="string">foo:</span> <span class="string">"aaa"</span>, <span class="string">bar:</span> <span class="string">"bbb"</span> &#125;; <span class="comment">// 等于下面的例子</span></div><div class="line">var &#123; <span class="string">foo:</span> foo, <span class="string">bar:</span> bar &#125; = &#123; <span class="string">foo:</span> <span class="string">"aaa"</span>, <span class="string">bar:</span> <span class="string">"bbb"</span> &#125;;</div></pre></td></tr></table></figure></p>
+<p>解构:</p>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span>[x,,y] = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line">x <span class="comment">//1</span></div><div class="line">y <span class="comment">//3</span></div><div class="line"></div><div class="line">var &#123;<span class="built_in">bar</span>,foo&#125; = &#123;foo: <span class="string">"aaa"</span>, <span class="built_in">bar</span>: <span class="string">"bbb"</span>&#125;;</div><div class="line">foo <span class="comment">// "aaa"</span></div><div class="line"><span class="built_in">bar</span> <span class="comment">// "bbb"</span></div></pre></td></tr></table></figure>
+<p>用途:<br>交换变量值:</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">[x,y]</span> = <span class="string">[y,x]</span>;</div></pre></td></tr></table></figure>
+<p>返回一个数组:</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">example</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">return</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> [a,b,c] = example();</div></pre></td></tr></table></figure>
+<p>提取JSON数组</p>
+<p>参数默认值</p>
+<p>for..of获取key and value</p>
+<p>加载模块指定方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> &#123; SourceMapConsumer, SourceNode &#125; = <span class="built_in">require</span>(<span class="string">"source-map"</span>);</div></pre></td></tr></table></figure>
+<h3 id="数值的扩展"><a href="#数值的扩展" class="headerlink" title="数值的扩展"></a>数值的扩展</h3><p>全局方法: parseInt() parseFloat()移植到Number对象上面。<br><strong>Number.parseInt</strong>，<strong>Number.parseFloat</strong>，改变了8进制16进制的开头。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//ES5</span></div><div class="line"><span class="function"><span class="title">parseInt</span><span class="params">(<span class="string">"12.34"</span>)</span></span> <span class="comment">// 12</span></div><div class="line"><span class="function"><span class="title">parseFloat</span><span class="params">(<span class="string">"123.45#"</span>)</span></span> <span class="comment">//123.45</span></div><div class="line"></div><div class="line"><span class="comment">//ES6</span></div><div class="line">Number.parseInt(<span class="string">"12.34"</span>) <span class="comment">//12</span></div><div class="line">Number.parseFloat(<span class="string">"123.45#"</span>) <span class="comment">//123.45</span></div></pre></td></tr></table></figure>
+<p><code>Number.isInteger()</code> 判断是否为整数</p>
+<p>Math对象扩展</p>
+<p><code>Math.trunc()</code> 去小数 <code>Math.sign()</code>判断正数负数零 这两个应该常用.</p>
+<p>更多在<a href="http://www.w3schools.com/js/js_reserved.asp" target="_blank" rel="external">w3c</a>查看</p>
+<p>数组的扩展</p>
+<p><code>Array.from()</code> 将类似数组的对象和可遍历的对象变为真正的数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> ps = <span class="built_in">document</span>.querySelectorAll(<span class="string">'p'</span>);</div><div class="line"><span class="built_in">Array</span>.from(ps).forEach(<span class="function"><span class="keyword">function</span>(<span class="params">p</span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(p);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>可以接受第二个参数,下面的例子将数组中布尔值为false的成员转为0。</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">￼Array.from([<span class="number">1</span>, , <span class="number">2</span>, , <span class="number">3</span>], (n) =&gt; n || <span class="number">0</span>) <span class="comment">// [1, 0, 2, 0, 3]</span></div></pre></td></tr></table></figure>
+<p><code>Array.of()</code> 将一组值转换为数组</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">Array</span>.<span class="keyword">of</span>(<span class="number">3</span>, <span class="number">11</span>, <span class="number">8</span>) <span class="comment">// [3,11,8] </span></div><div class="line"><span class="keyword">Array</span>.<span class="keyword">of</span>(<span class="number">3</span>) <span class="comment">// [3] </span></div><div class="line"><span class="keyword">Array</span>.<span class="keyword">of</span>(<span class="number">3</span>).length <span class="comment">// 1</span></div></pre></td></tr></table></figure>
+<p>对象的扩展</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="title">f</span>( x, y ) &#123; </div><div class="line">	<span class="keyword">return</span> <span class="type">&#123;</span> x, y &#125;;</div><div class="line">&#125;</div><div class="line">// 等同于</div><div class="line"><span class="keyword">function</span> <span class="title">f</span>( x, y ) &#123; </div><div class="line">	<span class="keyword">return</span> <span class="type">&#123;</span> x: x, y: y&#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>属性表达式 定义方法名,对象时使用</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="regexp">//</span> 方法一 obj.foo = true;</div><div class="line"><span class="regexp">//</span> 方法二 obj[<span class="string">'a'</span>+<span class="string">'bc'</span>] = <span class="number">123</span>;</div></pre></td></tr></table></figure>
+<p>Math增加cbrt立方根，hypot平方和开根号等方法</p>
+<h3 id="字符的扩展"><a href="#字符的扩展" class="headerlink" title="字符的扩展"></a>字符的扩展</h3><p>Unicode表示法</p>
+<p><code>\uxxxx</code>,xxxx表示字符码点</p>
+<p>这种表现形式适用于\u0000——\uFFFF之间的字符，<code>\u20BB7</code> 会被理解为 <code>\u20BB</code> + 7 = “ 7”,ES6中给码点增加{}即可,’\u{20BB7}’</p>
+<p>codePointAt(idx): 将字符转换为10进制码点,idx是字符在字符串中的位置<br>String.fromCodePoint(): 是将一个或多个码点转化为字符</p>
+<p>for ..of 能够遍历大于0xFFFF的码点. for会将大于0xFFFF的码点当做两个字符，都不可以打印出来</p>
+<p>es5的charAt是返回UTF-16编码的第一个字节,不能被打印. at能够识别Unicode大于0xFFFF字符的第一个字节</p>
+<p>es5中的indexof能够确定字符串是否包含在另一个字符串中</p>
+<p><strong>includes</strong>: 返回是字符串否包含该字符的布尔值,第二个参数指从当前位置到最后<br>startsWith: 返回是字符串开头是否包含该字符的布尔值,第二个参数指从当前位置到最后<br>endsWith: 返回是字符串结尾是否包含该字符的布尔值,第二个参数指从当前位置到最前的位置</p>
+<p>repeat返回一个新的字符串,该字符重复n(参数)次</p>
+<p>ES7增加了<strong>padStart</strong>,<strong>padEnd</strong>: 在头部或者尾部补齐指定长度的字符串(实用呀)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="string">'1'</span>.padStart(<span class="number">10</span>, <span class="string">'0'</span>) <span class="comment">// "0000000001"</span></div><div class="line"><span class="string">'12'</span>.padStart(<span class="number">10</span>, <span class="string">'0'</span>) <span class="comment">// "0000000012"</span></div><div class="line"><span class="string">'123456'</span>.padStart(<span class="number">10</span>, <span class="string">'0'</span>) <span class="comment">// "0000123456"</span></div><div class="line"></div><div class="line"><span class="string">'12'</span>.padStart(<span class="number">10</span>, <span class="string">'YYYY-MM-DD'</span>) <span class="comment">// "YYYY-MM-12"</span></div><div class="line"><span class="string">'09-12'</span>.padStart(<span class="number">10</span>, <span class="string">'YYYY-MM-DD'</span>) <span class="comment">// "YYYY-09-12"</span></div></pre></td></tr></table></figure>
+<p><strong><a href="http://es6.ruanyifeng.com/#docs/string" target="_blank" rel="external">字符串模板</a></strong></p>
+<p>实用反引号（<figure class="highlight plain"><figcaption><span>`$&#123;&#125;` 中,`$&#123;&#125;`可以写表达式,引用,方法,嵌套,使用条件语句。如下所示:</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">```javascript</div><div class="line">$(&apos;#result&apos;).append(`</div><div class="line">  There are &lt;b&gt;$&#123;basket.count * 2 * getNum()&#125;&lt;/b&gt; items</div><div class="line">   in your basket, &lt;em&gt;$&#123;basket.onSale&#125;&lt;/em&gt;</div><div class="line">  are on sale!</div><div class="line">`);</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>备注: es5中的<a href="https://msdn.microsoft.com/library/ff679971" target="_blank" rel="external">trim</a> 能够移除字符串中的已移除前导空格、尾随空格和行终止符的原始字符串<br>移除的字符包括空格、制表符、换页符、回车符和换行符</p>
+</blockquote>
+<p>嵌套:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> tmpl = <span class="function"><span class="params">addrs</span> =&gt;</span> <span class="string">`</span></div><div class="line">  &lt;table&gt;</div><div class="line">  <span class="subst">$&#123;addrs.map(addr =&gt; <span class="string">`</span></span></div><div class="line">    &lt;tr&gt;&lt;td&gt;<span class="subst">$&#123;addr.first&#125;</span>&lt;/td&gt;&lt;/tr&gt;</div><div class="line">    &lt;tr&gt;&lt;td&gt;<span class="subst">$&#123;addr.last&#125;</span>&lt;/td&gt;&lt;/tr&gt;</div><div class="line">  `).join(<span class="string">''</span>)&#125;</div><div class="line">  &lt;/table&gt;</div><div class="line">`;</div></pre></td></tr></table></figure>
+<p>引用模板字符串本身，在需要时执行，可以像下面这样写。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 写法一</span></div><div class="line"><span class="keyword">let</span> str = <span class="string">'return '</span> + <span class="string">'`Hello $&#123;name&#125;!`'</span>;</div><div class="line"><span class="keyword">let</span> func = <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">'name'</span>, str);</div><div class="line">func(<span class="string">'Jack'</span>) <span class="comment">// "Hello Jack!"</span></div><div class="line"></div><div class="line"><span class="comment">// 写法二</span></div><div class="line"><span class="keyword">let</span> str = <span class="string">'(name) =&gt; `Hello $&#123;name&#125;!`'</span>;</div><div class="line"><span class="keyword">let</span> func = <span class="built_in">eval</span>.call(<span class="literal">null</span>, str);</div><div class="line">func(<span class="string">'Jack'</span>) <span class="comment">// "Hello Jack!"</span></div></pre></td></tr></table></figure></p>
+<p>模板的实例:</p>
+<p>看着下面这段代码是不是特别熟悉,有种Rect JSX, Rails或者Node里面template的熟悉感觉。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> template = <span class="string">`</span></div><div class="line">&lt;ul&gt;</div><div class="line">  &lt;% for(var i=0; i &lt; data.supplies.length; i++) &#123; %&gt;</div><div class="line">    &lt;li&gt;&lt;%= data.supplies[i] %&gt;&lt;/li&gt;</div><div class="line">  &lt;% &#125; %&gt;</div><div class="line">&lt;/ul&gt;</div><div class="line">`;</div></pre></td></tr></table></figure></p>
+<p>思路做的是将字符串中<code>&lt;% %&gt;</code>JavaScript代码和<code>&lt;%= %&gt;</code>JavaScript表达式转换为表达式字符串,然后将拼接在一起。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">echo(<span class="string">'&lt;ul&gt;'</span>);</div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i &lt; data.supplies.length; i++) &#123;</div><div class="line">  echo(<span class="string">'&lt;li&gt;'</span>);</div><div class="line">  echo(data.supplies[i]);</div><div class="line">  echo(<span class="string">'&lt;/li&gt;'</span>);</div><div class="line">&#125;;</div><div class="line">echo(<span class="string">'&lt;/ul&gt;'</span>);</div></pre></td></tr></table></figure>
+<p>这段正则是用来匹配替换掉<code>&lt;% %&gt;</code>和<code>&lt;%= %&gt;</code>的,用来生成<code>echo(&#39;String&#39;)</code>组成的字符和能够直接执行的JavaScript代码,<br>因此在<code>compile</code>使用时要加上<code>eval</code>来执行里面的JavaScript代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">compile</span>(<span class="params">template</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> evalExpr = <span class="regexp">/&lt;%=(.+?)%&gt;/g</span>;  </div><div class="line">  <span class="keyword">var</span> expr = <span class="regexp">/&lt;%([\s\S]+?)%&gt;/g</span>;</div><div class="line"></div><div class="line">  template = template</div><div class="line">    .replace(evalExpr, <span class="string">'`); \n  echo( $1 ); \n  echo(`'</span>)</div><div class="line">    .replace(expr, <span class="string">'`); \n $1 \n  echo(`'</span>);</div><div class="line"></div><div class="line">  template = <span class="string">'echo(`'</span> + template + <span class="string">'`);'</span>;</div><div class="line"></div><div class="line">  <span class="keyword">var</span> script =</div><div class="line">  <span class="string">`(function parse(data)&#123;</span></div><div class="line">    var output = "";</div><div class="line"></div><div class="line">    function echo(html)&#123;</div><div class="line">      output += html;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="subst">$&#123; template &#125;</span></div><div class="line"></div><div class="line">    return output;</div><div class="line">  &#125;)`;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> script;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>用法如下: </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> parse = <span class="built_in">eval</span>(compile(template));</div><div class="line">div.innerHTML = parse(&#123; <span class="attr">supplies</span>: [ <span class="string">"broom"</span>, <span class="string">"mop"</span>, <span class="string">"cleaner"</span> ] &#125;);</div><div class="line"><span class="comment">//   &lt;ul&gt;</span></div><div class="line"><span class="comment">//     &lt;li&gt;broom&lt;/li&gt;</span></div><div class="line"><span class="comment">//     &lt;li&gt;mop&lt;/li&gt;</span></div><div class="line"><span class="comment">//     &lt;li&gt;cleaner&lt;/li&gt;</span></div><div class="line"><span class="comment">//   &lt;/ul&gt;</span></div></pre></td></tr></table></figure>
+<p>标签模板可用来过滤HTML字符串,多语言转换（国际化处理）</p>
+<h3 id="数组的扩展"><a href="#数组的扩展" class="headerlink" title="数组的扩展"></a>数组的扩展</h3><p>Array.from: 将类似数组的对象(array-like object)和可遍历(iterable)的对象(包括ES6的Set和Map);</p>
+<p>常用转换对象有 DOM操作里面的Nodelist集合(有<code>length</code>方法的),arguments对象,扩展运算符对象(<code>...</code>)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>.from(<span class="built_in">document</span>.querySelectorAll(<span class="string">'p'</span>)).forEach(<span class="function"><span class="keyword">function</span>(<span class="params">p</span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(p);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>Array.of(num) 创建数组,num = 0时为<code>[]</code> ,为一个参数时创建num长度的数组<br>copyWithin复制数组内部的值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>.prototype.copyWithin(target, start = <span class="number">0</span>, end = <span class="keyword">this</span>.length)</div></pre></td></tr></table></figure>
+<p>find 寻找数组里面符合条件的值并返回该值<br>findIndex返回数组内部第一个符合条件的位置,没有找到返回-1</p>
+<p>弥补indexOf的不足</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[<span class="literal">NaN</span>].indexOf(<span class="literal">NaN</span>)</div><div class="line"><span class="comment">// -1</span></div><div class="line"></div><div class="line">[<span class="literal">NaN</span>].findIndex(<span class="function"><span class="params">y</span> =&gt;</span> <span class="built_in">Object</span>.is(<span class="literal">NaN</span>, y))</div><div class="line"><span class="comment">// 0</span></div></pre></td></tr></table></figure>
+<p>fill(value,start,end) 通过给定value值,填充数组,可选参数start end可以改变填充位置</p>
+<p>entries() keys() values() 通过<code>for...of</code>能够对应遍历键值对,键名,键值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> [index, elem] <span class="keyword">of</span> [<span class="string">'a'</span>, <span class="string">'b'</span>].entries()) &#123;</div><div class="line">  <span class="built_in">console</span>.log(index, elem);</div><div class="line">&#125;</div><div class="line"><span class="comment">// 0 "a"</span></div><div class="line"><span class="comment">// 1 "b"</span></div></pre></td></tr></table></figure>
+<p>includes() 搜索是否包含指定值</p>
+<p>空位 </p>
+<p><code>[,1,,1]</code> ES6中统一规定空位的值为<code>undefined</code></p>
+<p>新增的数组方法都不忽略空位, for…of能够遍历出空位</p>
+<h3 id="函数的扩展"><a href="#函数的扩展" class="headerlink" title="函数的扩展"></a>函数的扩展</h3><p><strong>函数的默认值</strong></p>
+<p>在ES5中当函数的默认值一般都用<code>||</code>表达式,但在输入值为<code>false</code>的情况则就不能了，可以通过三元表达式来完成 <code>x === false ? true : false</code></p>
+<p>ES6设置函数的默认值是直接写在参数定义后面</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Point</span><span class="params">(x, y = 5)</span></span>&#123;</div><div class="line">  <span class="comment">// let x = 1; //注意此时的x和y都不能用let,const再次声明</span></div><div class="line">  <span class="comment">// 这种情况下能够很清晰的就知道y是不必须写的,x必须传递</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>参数与解构赋值一起使用</p>
+<p>箭头函数与变量解构结合使用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> full = <span class="function">(<span class="params">&#123;first, last&#125;</span>) =&gt;</span> first + <span class="string">" "</span> + last;</div><div class="line"></div><div class="line"><span class="comment">//等于</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">full</span>(<span class="params">person</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> person.first + <span class="string">" "</span> + person.last;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>箭头函数的注意点:</p>
+<ul>
+<li>this是定义所在的对象,不是使用时所在对象</li>
+<li>不可以做构造函数,使用new命令</li>
+<li>不可以使用arguments对象</li>
+<li>不可以使用yield对象</li>
+</ul>
+<p>伪调用优化<br>伪调用递归</p>
+<p>###　对象的扩展</p>
+<p>属性简写: </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> birth = <span class="string">'2000/01/01'</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> Person = &#123;</div><div class="line"></div><div class="line">  <span class="attr">name</span>: <span class="string">'张三'</span>,</div><div class="line"></div><div class="line">  <span class="comment">//等同于birth: birth</span></div><div class="line">  birth,</div><div class="line"></div><div class="line">  <span class="comment">// 等同于hello: function ()...</span></div><div class="line">  hello() &#123; <span class="built_in">console</span>.log(<span class="string">'我的名字是'</span>, <span class="keyword">this</span>.name); &#125;</div><div class="line"></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>属性表达式</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var lastWord = <span class="string">'last word'</span>;</div><div class="line"></div><div class="line">var a = &#123;</div><div class="line">  <span class="string">'first word'</span>: <span class="string">'hello'</span>,</div><div class="line">  [lastWord]: <span class="string">'world'</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line">a[<span class="string">'first word'</span>] // <span class="string">"hello"</span></div><div class="line">a[lastWord] // <span class="string">"world"</span></div><div class="line">a[<span class="string">'last word'</span>] // <span class="string">"world"</span></div></pre></td></tr></table></figure>
+<p><strong>属性表达式不能与简写表达式同时使用</strong></p>
+<p>name属性</p>
+<p>object.is比较两个值是否相等</p>
+<p>object.assign(target ,source1, source2) 用于对象的合并,浅拷贝</p>
+<p>添加属性和方法</p>
+<h3 id="Symbol"><a href="#Symbol" class="headerlink" title="Symbol"></a>Symbol</h3><p>7种数据类型: Undefind, Null, String, Number, Object, Boolean, Symbol</p>
+<p>在处理单例的时候能够通过单例来是引用对象不被重写</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// mod.js</span></div><div class="line"><span class="keyword">const</span> FOO_KEY = Symbol.<span class="keyword">for</span>(<span class="string">'foo'</span>);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span><span class="params">()</span> </span>&#123;</div><div class="line">  this.foo = <span class="string">'hello'</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span> (!<span class="keyword">global</span>[FOO_KEY]) &#123;</div><div class="line">  <span class="keyword">global</span>[FOO_KEY] = <span class="keyword">new</span> A();</div><div class="line">&#125;</div><div class="line"></div><div class="line">module.exports = <span class="keyword">global</span>[FOO_KEY];</div></pre></td></tr></table></figure>
+<h3 id="Proxy-和-Reflect"><a href="#Proxy-和-Reflect" class="headerlink" title="Proxy 和 Reflect"></a>Proxy 和 Reflect</h3><h3 id="Set-and-Map"><a href="#Set-and-Map" class="headerlink" title="Set and  Map"></a>Set and  Map</h3><p>Set类似于数组,但成员唯一 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">dedupe</span>(<span class="params">array</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>(array));</div><div class="line">&#125;</div><div class="line"></div><div class="line">dedupe([<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]) <span class="comment">// [1, 2, 3]</span></div></pre></td></tr></table></figure>
+<p>WeakSet与Set的区别是只接受数组或者类似数组的对象作为参数,无Size属性，不能进行遍历</p>
+<p>Map能存放对象，和内存地址绑定</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</div><div class="line"></div><div class="line"><span class="keyword">var</span> k1 = [<span class="string">'a'</span>];</div><div class="line"><span class="keyword">var</span> k2 = [<span class="string">'a'</span>];</div><div class="line"></div><div class="line">map</div><div class="line">.<span class="keyword">set</span>(k1, <span class="number">111</span>)</div><div class="line">.<span class="keyword">set</span>(k2, <span class="number">222</span>);</div><div class="line"></div><div class="line">map.<span class="keyword">get</span>(k1) <span class="comment">// 111</span></div><div class="line">map.<span class="keyword">get</span>(k2) <span class="comment">// 222</span></div></pre></td></tr></table></figure>
+<p>看完之后在多个项目中使用过后才知道es6带来的一些实际方便，这本书不仅是一本入门教程，也是一本API，在不清楚或者忘记某个方法时需要多来翻一翻。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+            <a href="/tags/ES6/" rel="tag"># ES6</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/06/NgShowAndNgIf/" rel="next" title="NgShow And NgIf">
+                <i class="fa fa-chevron-left"></i> NgShow And NgIf
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/28/在Windows7上面安装ubuntu系统/" rel="prev" title="在Windows7上面安装ubuntu系统">
+                在Windows7上面安装ubuntu系统 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/03/06/ECMAScript6/"
+           data-title="读ECMAScript 6记录" data-url="http://huangmin.me/2016/03/06/ECMAScript6/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars0.githubusercontent.com/u/9191270?v=3&s=460"
+               alt="huangmin" />
+          <p class="site-author-name" itemprop="name">huangmin</p>
+          <p class="site-description motion-element" itemprop="description">求知要踏踏实实,做人要老老实实</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/minhuang0" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#let-不变量提升-不能重复声明-对当前作用域起作用-暂时性死区"><span class="nav-number">1.</span> <span class="nav-text">let 不变量提升,不能重复声明,对当前作用域起作用,暂时性死区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作用域-全局作用域-函数作用域-块级作用域"><span class="nav-number">2.</span> <span class="nav-text">作用域: 全局作用域,函数作用域,块级作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#const为常量-需要立即声明"><span class="nav-number">3.</span> <span class="nav-text">const为常量,需要立即声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ES6变量声明方法"><span class="nav-number">4.</span> <span class="nav-text">ES6变量声明方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结构赋值"><span class="nav-number">5.</span> <span class="nav-text">结构赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数值的扩展"><span class="nav-number">6.</span> <span class="nav-text">数值的扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符的扩展"><span class="nav-number">7.</span> <span class="nav-text">字符的扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组的扩展"><span class="nav-number">8.</span> <span class="nav-text">数组的扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数的扩展"><span class="nav-number">9.</span> <span class="nav-text">函数的扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Symbol"><span class="nav-number">10.</span> <span class="nav-text">Symbol</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Proxy-和-Reflect"><span class="nav-number">11.</span> <span class="nav-text">Proxy 和 Reflect</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set-and-Map"><span class="nav-number">12.</span> <span class="nav-text">Set and  Map</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huangmin</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"huangm"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

@@ -1,0 +1,766 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript,redux," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="redux是在看react时用于管理状态(state)，之前一直发音错了(美[riː’dʌks]) 。
+关于redux + react的例子有很多，很多都是结合react来讲，react-redux中的connect, Provider方便了与redux之间的联系。redux深入理解看这
+本篇文章中主要提到单纯的去使用和理解redux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redux实践">
+<meta property="og:url" content="http://huangmin.me/2016/10/30/redux实践/index.html">
+<meta property="og:site_name" content="Huangmin’s blog">
+<meta property="og:description" content="redux是在看react时用于管理状态(state)，之前一直发音错了(美[riː’dʌks]) 。
+关于redux + react的例子有很多，很多都是结合react来讲，react-redux中的connect, Provider方便了与redux之间的联系。redux深入理解看这
+本篇文章中主要提到单纯的去使用和理解redux">
+<meta property="og:image" content="http://www.ruanyifeng.com/blogimg/asset/2016/bg2016011503.png">
+<meta property="og:image" content="http://www.ruanyifeng.com/blogimg/asset/2016/bg2016091802.jpg">
+<meta property="og:updated_time" content="2016-12-05T02:21:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="redux实践">
+<meta name="twitter:description" content="redux是在看react时用于管理状态(state)，之前一直发音错了(美[riː’dʌks]) 。
+关于redux + react的例子有很多，很多都是结合react来讲，react-redux中的connect, Provider方便了与redux之间的联系。redux深入理解看这
+本篇文章中主要提到单纯的去使用和理解redux">
+<meta name="twitter:image" content="http://www.ruanyifeng.com/blogimg/asset/2016/bg2016011503.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://huangmin.me/2016/10/30/redux实践/"/>
+
+
+
+
+
+  <title> redux实践 | Huangmin’s blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?0785d303087b8345c92a7cfaba283e31";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Huangmin’s blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://huangmin.me/2016/10/30/redux实践/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="huangmin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/9191270?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Huangmin’s blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Huangmin’s blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                redux实践
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-30T00:00:00+08:00">
+                2016-10-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/10/30/redux实践/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/30/redux实践/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>redux是在看react时用于管理状态(state)，之前一直<a href="http://dict.cn/redux" target="_blank" rel="external">发音</a>错了(美[riː’dʌks]) 。</p>
+<p>关于redux + react的<a href="https://github.com/lewis617/react-redux-tutorial" target="_blank" rel="external">例子</a>有很多，很多都是结合react来讲，react-redux中的connect, Provider方便了与redux之间的联系。redux深入理解<a href="http://div.io/topic/1309" target="_blank" rel="external">看这</a></p>
+<p>本篇文章中主要提到单纯的去使用和理解<a href="http://cn.redux.js.org//docs" target="_blank" rel="external">redux</a></p>
+<a id="more"></a>
+<p>为什么用redux</p>
+<p>在维护多个react组件时，当涉及到多重传递或者为了组件之间的通讯时，将所有的状态提到顶层再一层一层传递下去或者通过callBack来修改顶层的state, 这样做增加了维护成本，代码可阅读性。而redux是则可以解决react中组件与组件之间数据传递和通讯问题。</p>
+<p>需要额外准备的内容:</p>
+<p>es6: 箭头函数, 属性的简洁表示法 </p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p><code>redux</code> 是 facebook 提出的 <a href="http://www.ruanyifeng.com/blog/2016/01/flux.html" target="_blank" rel="external"><code>flux</code></a> 架构的一种优秀实现, 不局限于为 react 提供数据状态处理, 可以配合其他框架处理数据。</p>
+<p>Redux适用多数据，多交互的场景，设计思想就是用一个大的对象包裹所有的状态，每个状态对应不同的View。</p>
+<p>下面是两张分别是<code>flux</code>和<code>redux + react</code>的原理图,引用来自<a href="http://www.ruanyifeng.com" target="_blank" rel="external">阮老师</a>的blog:</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2016/bg2016011503.png" alt="flux"></p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2016/bg2016091802.jpg" alt="redux + react"></p>
+<p>两者之前的共同点都是数据是单向流动的，都是action动作dispatch派发到store,store则负责维护应用的所有状态,当产生变化时，则会通知view渲染。</p>
+<h4 id="redux中有几个常见的名词"><a href="#redux中有几个常见的名词" class="headerlink" title="redux中有几个常见的名词"></a>redux中有几个常见的名词</h4><p><code>action</code>:<br>    <code>action</code>是view发出来的通知,一种动作;<br>    <code>action</code>是修改store数据的唯一来源;<br>    <code>action</code>对象里面type属性是必须的<br><code>dispatch</code>:<br>    <code>store.dispatch</code>是<code>view</code>发出<code>action</code>的唯一方法,<code>dispatch</code>接受一个<code>action</code>作为参数,并将其发送给<code>state</code><br><code>reducer</code>:<br>    <code>reducer</code>是<code>state</code>接收到<code>action</code>的计算过程,通过<code>reducer</code>计算后返回一个新的<code>state</code><br>    <code>reducer</code>是一个纯函数,相同的输入相同的输出<br><code>store</code>:<br>    将<code>action</code>和<code>reducer</code>联系在一起,并保存<code>state</code>的数据,使用<code>createStore</code>函数创建。</p>
+<h4 id="store中有几个常用的方法"><a href="#store中有几个常用的方法" class="headerlink" title="store中有几个常用的方法"></a>store中有几个常用的方法</h4><p><code>getState()</code> : 获取<code>store</code>中的<code>state</code><br><code>dispatch(action)</code>: 更新<code>state</code><br><code>subscribe(listener)</code>: 注册和注销监听（返回函数注销监听） </p>
+<h4 id="redux中的单向的操作"><a href="#redux中的单向的操作" class="headerlink" title="redux中的单向的操作"></a>redux中的单向的操作</h4><p><code>action</code>(动作) -&gt; <code>reducer</code>(更新<code>state</code>) -&gt; <code>state</code>(返回新的<code>state</code>) -&gt; </p>
+<p><code>action</code>(动作) -&gt; <code>reducer</code>(更新<code>state</code>) -&gt; <code>state</code>(返回新的<code>state</code>) -&gt; </p>
+<p>为了确保每次同一个<code>action</code>所改变的内容都一样，所以<code>reducer</code>函数里面的内容应该是一个纯函数(详细参考<a href="https://github.com/MostlyAdequate/mostly-adequate-guide" target="_blank" rel="external">FP</a>,这个函数只处理<code>state</code>并返回一个新的<code>state</code>)</p>
+<h3 id="action"><a href="#action" class="headerlink" title="action"></a>action</h3><p>现在我们手写一个<code>action</code>和一个<code>action</code>创建函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> ADD = <span class="string">'ADD'</span>;</div><div class="line"></div><div class="line"><span class="comment">//action</span></div><div class="line">&#123;</div><div class="line">  <span class="attr">type</span>: ADD,</div><div class="line">  <span class="attr">text</span>: <span class="string">'Build my first Redux app'</span></div><div class="line">&#125;</div><div class="line"><span class="comment">// action 创建函数</span></div><div class="line"></div><div class="line"><span class="keyword">let</span> add = <span class="function">(<span class="params">text</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="attr">type</span>: ADD,</div><div class="line">        text</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>看起来很简单是吧，<code>action</code>和<code>action</code>创建函数的区别在于有一个可复用的返回<code>action</code>的方法。</p>
+<h3 id="reducer"><a href="#reducer" class="headerlink" title="reducer"></a>reducer</h3><p><code>reducer</code>是一个单纯的函数,只要传入参数相同，返回计算得到的下一个 <code>state</code> 就一定相同。</p>
+<p>没有不同的返回值、不改变变量，仅仅只是计算, 如:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> add3 = <span class="function">(<span class="params">num</span>) =&gt;</span>  num + <span class="number">3</span>;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> ADD = <span class="string">'ADD'</span>;</div><div class="line"><span class="keyword">const</span> SUB = <span class="string">'SUB'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> initState = &#123;</div><div class="line">    <span class="string">"add"</span>: <span class="number">0</span>,</div><div class="line">    <span class="string">"sub"</span>: <span class="number">0</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">let</span> reducerSimple = <span class="function">(<span class="params">state = initState, action</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">switch</span> (action.type) &#123;</div><div class="line">        <span class="keyword">case</span> ADD:</div><div class="line">            <span class="keyword">return</span> <span class="built_in">Object</span>.assign(&#123;&#125;, state, &#123;<span class="attr">add</span>: <span class="number">1</span>&#125;);</div><div class="line">        <span class="keyword">case</span> SUB:</div><div class="line">            <span class="keyword">return</span> <span class="built_in">Object</span>.assign(&#123;&#125;, state, &#123;<span class="attr">sub</span>: <span class="number">1</span>&#125;);</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            <span class="keyword">return</span> <span class="built_in">Object</span>.assign(&#123;&#125;, state, initState);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p><code>reducerSimple</code>函数所执行的内容是获取<code>action</code>中的<code>type</code>参数并没有修改<code>state</code>的同时返回一个对应的,新的state。</p>
+<h4 id="reducer的拆分"><a href="#reducer的拆分" class="headerlink" title="reducer的拆分"></a>reducer的拆分</h4><p>Redux提供了<code>combineReducers</code>方法能够经行<code>reducer</code>的拆分，当<code>reducer</code>需要维护的变量越多时，一个<code>reducer</code>方法会变得难以阅读，这时候则需要拆分<code>reducer</code></p>
+<p>combineReducers这个方法做的事情则是产生一个整体的<code>reducer</code>函数，state通过state里面的type去执行子类<code>reducer</code>里面的计算</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 假设有a,b,c三个子reducer</span></div><div class="line"><span class="keyword">const</span> reducer = combineReducers(&#123;</div><div class="line">  <span class="attr">a</span>: a,</div><div class="line">  <span class="attr">b</span>: b,</div><div class="line">  <span class="attr">c</span>: c</div><div class="line">&#125;)</div><div class="line"><span class="comment">// 等同于</span></div><div class="line"><span class="keyword">const</span> reducer = combineReducers(&#123;</div><div class="line">  a</div><div class="line">  b</div><div class="line">  c</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 等同于</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">reducer</span>(<span class="params">state = &#123;&#125;, action</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    <span class="attr">a</span>: a(state.a, action),</div><div class="line">    <span class="attr">b</span>: b(state.b, action),</div><div class="line">    <span class="attr">c</span>: c(state.c, action)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">//如果需要更改key的值</span></div><div class="line"><span class="keyword">const</span> reducer = combineReducers(&#123;</div><div class="line">  <span class="attr">myA</span>: a,</div><div class="line">  <span class="attr">myB</span>: b,</div><div class="line">  <span class="attr">myC</span>: c</div><div class="line">&#125;);</div><div class="line"><span class="comment">// 等同于</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">reducer</span>(<span class="params">state = &#123;&#125;, action</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    <span class="attr">myA</span>: a(state.myA, action),</div><div class="line">    <span class="attr">myB</span>: b(state.myB, action),</div><div class="line">    <span class="attr">myC</span>: c(state.myC, action)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="store"><a href="#store" class="headerlink" title="store"></a>store</h3><p>store就是用来处理action和reducer, 并注册事件监听和使用dispatch来更新state</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> store = createStore(reducerSimple);</div><div class="line"></div><div class="line">store.subscribe(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(store.getState()));</div><div class="line"></div><div class="line">store.dispatch(add(<span class="string">'I am add'</span>));</div><div class="line">store.dispatch(add(<span class="string">'I am sub'</span>));</div></pre></td></tr></table></figure>
+<p>完整代码如下:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; createStore &#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</div><div class="line"></div><div class="line"><span class="comment">// public var</span></div><div class="line"><span class="keyword">const</span> ADD = <span class="string">'ADD'</span>;</div><div class="line"><span class="keyword">const</span> SUB = <span class="string">'SUB'</span></div><div class="line"></div><div class="line"><span class="comment">// action </span></div><div class="line"><span class="keyword">let</span> add = <span class="function">(<span class="params">text</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="attr">type</span>: ADD,</div><div class="line">        text</div><div class="line">    &#125;;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">let</span> sub = <span class="function">(<span class="params">text</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="attr">type</span>: SUB,</div><div class="line">        text</div><div class="line">    &#125;;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// reducer</span></div><div class="line"><span class="keyword">const</span> initState = &#123;</div><div class="line">    <span class="string">"add"</span>: <span class="number">0</span>,</div><div class="line">    <span class="string">"sub"</span>: <span class="number">0</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">let</span> reducerSimple = <span class="function">(<span class="params">state = initState, action</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">switch</span> (action.type) &#123;</div><div class="line">        <span class="keyword">case</span> ADD:</div><div class="line">            <span class="keyword">return</span> <span class="built_in">Object</span>.assign(&#123;&#125;, state, &#123;<span class="attr">add</span>: <span class="number">1</span>, <span class="attr">sub</span>: <span class="number">0</span>&#125;);</div><div class="line">        <span class="keyword">case</span> SUB:</div><div class="line">            <span class="keyword">return</span> <span class="built_in">Object</span>.assign(&#123;&#125;, state, &#123;<span class="attr">add</span>: <span class="number">0</span>, <span class="attr">sub</span>: <span class="number">1</span>&#125;);</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            <span class="keyword">return</span> <span class="built_in">Object</span>.assign(&#123;&#125;, state, initState);</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// store</span></div><div class="line"><span class="keyword">let</span> store = createStore(reducerSimple);</div><div class="line"></div><div class="line">store.subscribe(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(store.getState()));</div><div class="line"></div><div class="line">store.dispatch(add(<span class="string">'I am add'</span>)); <span class="comment">//&#123; add: 1, sub: 0 &#125;</span></div><div class="line">store.dispatch(sub(<span class="string">'I am sub'</span>)); <span class="comment">//&#123; add: 0, sub: 1 &#125;</span></div></pre></td></tr></table></figure>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>继续值得优化的地方:</p>
+<ul>
+<li>将action, reducer, store, public var, … 分别放在不同的文件夹(actions,reducers,store,constnts),通过es6中module将不同的模块拆分</li>
+<li>使用<code>Middleware</code>封装log记录</li>
+</ul>
+<p>还有更高级的功能去探索:</p>
+<ul>
+<li>异步action</li>
+<li>异步数据流</li>
+</ul>
+<p>我个人觉得不是所有的项目都需要用到redux。开发过程某一项工具类或者框架的使用应该慎重考虑，在需要用到的地方使用才能发挥出最大的威力。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+            <a href="/tags/redux/" rel="tag"># redux</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/29/javascript函数式编程思想实践/" rel="next" title="javascript函数式编程实践">
+                <i class="fa fa-chevron-left"></i> javascript函数式编程实践
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/14/shareFEDeveloperTools/" rel="prev" title="听《前端工程师的常用工具》分享总结">
+                听《前端工程师的常用工具》分享总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/30/redux实践/"
+           data-title="redux实践" data-url="http://huangmin.me/2016/10/30/redux实践/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars0.githubusercontent.com/u/9191270?v=3&s=460"
+               alt="huangmin" />
+          <p class="site-author-name" itemprop="name">huangmin</p>
+          <p class="site-description motion-element" itemprop="description">求知要踏踏实实,做人要老老实实</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/minhuang0" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#redux中有几个常见的名词"><span class="nav-number">1.1.</span> <span class="nav-text">redux中有几个常见的名词</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#store中有几个常用的方法"><span class="nav-number">1.2.</span> <span class="nav-text">store中有几个常用的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#redux中的单向的操作"><span class="nav-number">1.3.</span> <span class="nav-text">redux中的单向的操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#action"><span class="nav-number">2.</span> <span class="nav-text">action</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reducer"><span class="nav-number">3.</span> <span class="nav-text">reducer</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#reducer的拆分"><span class="nav-number">3.1.</span> <span class="nav-text">reducer的拆分</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#store"><span class="nav-number">4.</span> <span class="nav-text">store</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">5.</span> <span class="nav-text">其他</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huangmin</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"huangm"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

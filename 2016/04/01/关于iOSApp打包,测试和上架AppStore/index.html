@@ -1,0 +1,764 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="sublime-text," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="记录开发titanium的时候IOS测试的一些步骤">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于iOSApp打包,测试和上架AppStore">
+<meta property="og:url" content="http://huangmin.me/2016/04/01/关于iOSApp打包,测试和上架AppStore/index.html">
+<meta property="og:site_name" content="Huangmin’s blog">
+<meta property="og:description" content="记录开发titanium的时候IOS测试的一些步骤">
+<meta property="og:updated_time" content="2016-12-05T02:21:25.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于iOSApp打包,测试和上架AppStore">
+<meta name="twitter:description" content="记录开发titanium的时候IOS测试的一些步骤">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://huangmin.me/2016/04/01/关于iOSApp打包,测试和上架AppStore/"/>
+
+
+
+
+
+  <title> 关于iOSApp打包,测试和上架AppStore | Huangmin’s blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?0785d303087b8345c92a7cfaba283e31";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Huangmin’s blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://huangmin.me/2016/04/01/关于iOSApp打包,测试和上架AppStore/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="huangmin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/9191270?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Huangmin’s blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Huangmin’s blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                关于iOSApp打包,测试和上架AppStore
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-01T00:00:00+08:00">
+                2016-04-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/04/01/关于iOSApp打包,测试和上架AppStore/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/01/关于iOSApp打包,测试和上架AppStore/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>记录开发titanium的时候IOS测试的一些步骤<br><a id="more"></a><br>a) developer.apple.com -&gt; member center<br>主要获取 App ID,制作各种 certificate (证书),添加 iOS 设备以及配置 provisioning file</p>
+<p>b) itunesconnect.apple.com<br>在这里,我们提交 app 给 Apple 审核,并能看到审核后的结果和反馈信 息。</p>
+<ol>
+<li>第一步,创建 App ID,为 App 取一个独一无二的名字</li>
+</ol>
+<p>App ID 是识别不同应用程序的唯一标示符。像身份证一样,每个 app 都需要一个 App ID 来唯一标识自己。目前有两种类型的 App 标识:一个是精确的 App ID(explicit App ID),一个是通配符 App ID(wildcard App ID)。 使用通配符的 App ID 可以用来构建和 安装多个程序。尽管通配符 App ID 非常方便,但是一个精确的 App ID 也是需要的,尤 其是当 App 使用 iCloud 或者使用其他 iOS 功能的时候,比如 Game Center、Push</p>
+<p>Notifications 或者 IAP。在这里,我们使用的是精确的 App ID(explicit App ID)。</p>
+<p>关于两种不同 App ID 的区别,可以参考 Apple Technical Note QA1713</p>
+<p><a href="https://developer.apple.com/library/ios/qa/qa1713/_index.html" target="_blank" rel="external">https://developer.apple.com/library/ios/qa/qa1713/_index.html</a></p>
+<p>如何产生并指定一个 App ID 给 App 呢?</p>
+<p>我们首先要在 Apple 的平台上创建一个 App ID,</p>
+<p>在 developer.apple.com -&gt; member center -&gt; iOS Apps -&gt; Identifier</p>
+<p>点击右上角的加号</p>
+<p>以下是一个已经申请好的 App ID</p>
+<p>之后,用 Ti 编译打包的时候,Ti 的编译器会使用配置文件 tiapp.xml。此文件中用于指</p>
+<p>定编译出的 App 使用的 App ID。</p>
+<p>用 Ti 编译后,会产生对应的 Xcode 的项目文件(存放在项目目录下 build\iPhone\xxx.xcodeproj).用 Xcode 打开该项目文件,就可以看到被指定的 App</p>
+<p>ID。Xcode 里面叫做 Bundle Identitier</p>
+<ol>
+<li>第二步,签名和证书</li>
+</ol>
+<p>为代码签名可以使操作系统识别某个 app 的开发(发布)者是谁(私钥的用</p>
+<p>途),也可以保护代码不会被篡改(公钥的用途)。<br>代码签名使用的是 Apple 提供的一个公私钥对来完成的。公钥保存在证书里</p>
+<p>面,证书存放在 member center 里。私钥是在制作证书时候,由程序从你的</p>
+<p>login keychain 里面产生的。要想完成对代码的签名,就要同时拥有证书和制</p>
+<p>作这个证书的电脑(人)的身份识别信息(也就是私钥)。证书只有和对应的<br>象成,只有签了字的支票才能兑现,只有签字过的合同才有法律效力一样。这<br>里的‘字’就是身份识别信息(也就是私钥), 证书本身就是一个公钥。</p>
+<p>证书分为两种 - Development(开发)和 Distribution(发布)证书。开发证</p>
+<p>书用于识别组中的单个成员,这个证书主要用于开发和测试过程中。每次被开<br>发或被测试的程序都要被这个证书签名一次,编译打包后,只能安装在有限的<br>(provisioning profile 中指定)设备上。发布证书用于识别一个组,主要用</p>
+<p>于编译打包一个要上传到 app store 上的 app,故其名称叫做发布证书。</p>
+<p>制作各种不同证书的方法是基本上相同,以制作一个开发证书为例:<br>私钥配对存放在开发者的 keychain 内,开发者才能用这个去签名代码。可以想</p>
+<p>a) 进 入 developer.apple.com -&gt; member center 后 , 选 择 Certificates , Identifiers &amp; profiles。再在 iOS Apps 下选择 Certificates</p>
+<p>b) 点击“+”。下图中可以看出,这个账户在一个 team 中(一个账户可以属于 多个 Team,只要 Team 邀请,用账户的 email 接受邀请即可)已经有了 一个发布证书。</p>
+<p>c) 如果想制作开发证书,选择“iOS App Development”。如果想选择分发证 书,选择“In-House and Ad Hoc”。</p>
+<p>d) 按照提示,获取开发者身份识别信息(主要就是私钥)并保存此信息到 CSR 文件中。</p>
+<p>e) 按照提示,上传CSR文件。Apple会产生对应的证书(公钥),供用户下 载。</p>
+<p>以上就完成的证书的制作。开发者想要完成对 App 的签名,就要</p>
+<p>a)  登陆到 member center 下载该证书</p>
+<p>b)  通过在 keychain 中导出 p12 文件的形式,获得对应证书的私钥。</p>
+<p>想更多了解 Certificate,Identity 等,可以参考 <a href="https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistribut" target="_blank" rel="external">https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistribut</a> ionGuide/MaintainingCertificates/MaintainingCertificates.html#//apple_ref/doc/uid/T P40012582-CH31-SW41</p>
+<ol>
+<li>第三步,添加设备(对于非企业账号) 如果你的账户(team)不是企业账号,Apple 只允许你的 app 最多安装到 100 个 iOS 设备上。可以被安装的设备需要在这里先添加成为后选设备,再在 provisioning profile 中指定为可下载设备。</li>
+</ol>
+<p>a)  连接设备到 iTunes。通过 iTunes, 获得 iOS 设备的 UDID</p>
+<p>b)  进入 developer.apple.com,选择 Devices</p>
+<p>c) 点击右上的“+”</p>
+<p>4.</p>
+<p>d) 可以一次只添加一个设备(Register Device),或者做批量添加(Register Multiple Devices)</p>
+<p>制作 Provisioning Profile<br>Provisioning Profile 实际上是个配置文件。他用来告诉 Xcode,一个 app(App ID)应该用什么有效的证书来签字,可以在哪些设备上安装这个 App。所以, 在制作一个 Provisioning Profile 的时候,我们要指定的是</p>
+<p>i. AppID<br>ii. 可以安装这个App的设备(如果是非企业账号)</p>
+<p>iii. 证书<br>具体制作方法如下<br>a) 点击 Provisioning Profile -&gt; All</p>
+<p>b) 点击右上的“+”</p>
+<p>c) 选择要建立的 provisioning profile 的类型。Development 为开发类型, Distribution 为发布类型。两者的区别和 Certificates 相同。这里用开发类型 举例。</p>
+<p>d) 选择要为哪一个 App 配置 Provisioning Profile</p>
+<p>e)  选择哪些有效的证书是可以给你的 App 做签名的。这里你可以只指定自己 的证书,也可以全选所有人的证书,如果你Select All,即把所有人的证书 的公钥都注册到了这个 provisioning profile 中,如果你再拿到每个开发者 的私钥(p12 文件),你就可以用所有人的证书进行开发测试了~</p>
+<p>f)  选择该 App 可以被安装在哪些设备上(如果你制作的是企业账号对应的</p>
+<ol>
+<li>a)</li>
+</ol>
+<p>g) 最后为这个 Provisioning Profile 起名字,下载,双击安装到 Xcode 即可。</p>
+<p>为了真机测试,需要在 Ti 中做的配置<br>下载好了 Certificates 和 Provisioning Profile 之后,我们就可以连接真机进行测 试了。</p>
+<p>将测试机连接到电脑上,进入项目根目录,打开 tiapp.xml</p>
+<p>provisioning profile,这个选项是没有的。因为企业账号是不限设备,无限 分发)。</p>
+<p>保证<id>和你在 developer.apple.com 中注册的 App Id 一致</id></p>
+<p>b)  输入 $ ti info -t ios 这里会列出所有本机关于iOS的配置信息</p>
+<p>c)  查看Connected iOS Devices 测试机是否已连接上</p>
+<p>d)  测试机连接成功后,复制 UDID 号,输入<br>$ ti build –platform ios –target device –device-id &lt;设备的 UDID&gt;</p>
+<p>e)  选择你的 Development Certificates</p>
+<p>f)  选择你的 Provisioning Profile</p>
+<p>g)  这样就把我们的 App 安装到了真机上了</p>
+<p>Note: 你可能会遇到这种错误,这个错误的原因是你连接到电脑的测试机与 Titanium 找到的Connected device 不一致。重新执行一下上述命令,指定好device- id就好了。</p>
+<ol>
+<li>为了上架 Apple Store,需要在 Xcode 以及 Ti 中需要做配置,以及最后的打包 及上传到 iTunesConnect 的过程</li>
+</ol>
+<p>a) 上架之前,需要设置 App 的 icon 和引导图,进入项目根目录下的 app/assets/iphone/,按照下图说明将默认的图片替换为自己 App 的相关图片</p>
+<p>b) 上架到 App Store 与 真机测试的不同之处是你下载的证书要是 distribution certificate,如果这个证书不是你创建的,你需要找创建这个证书的人提供一个 p12 文件给你作为证书的私钥,然后生成一个用于发布的 provisioning profile.下载下 来。</p>
+<p>c) 进入项目根目录,输入<br>$ ti build –platform ios –target dist-appstore</p>
+<p>d) 选择发布证书,以及对应也这个证书的provisioningprofile<br>e) 成功之后会生成一个.ipa文件,打开xcode,点击顶部Windowtab -&gt;Organizer</p>
+<p>f) 点击 Archive ,这里记录着所有你打包过的 ipa 版本,选择最新的一个打包版 本,点击 Validate,用来检查一下是否有错误,是否符合苹果上传 ipa 规定,如果验</p>
+<p>证成功,最后会提示你 Successful.这时我们就可以点击 Submit 提交到 iTunesConnect 构建版本中。<br>g) 如果 Submit 成功,打开 <a href="http://itunesconnect.apple.com,进入我的" target="_blank" rel="external">http://itunesconnect.apple.com,进入我的</a> App,打 开项目,有一个构建版本,点击旁白的 + 号,选择刚才构建好的版本,点击右上角 的提交以供审核就完成了 App 的发布,等待 App Store 审核,审核成功后可以在 App Store 下载了。 </p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/sublime-text/" rel="tag"># sublime-text</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/01/sublimeTextPackage/" rel="next" title="配置sublime Text">
+                <i class="fa fa-chevron-left"></i> 配置sublime Text
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/23/使用Jade来共用重复代码/" rel="prev" title="使用Jade来共用重复代码">
+                使用Jade来共用重复代码 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/04/01/关于iOSApp打包,测试和上架AppStore/"
+           data-title="关于iOSApp打包,测试和上架AppStore" data-url="http://huangmin.me/2016/04/01/关于iOSApp打包,测试和上架AppStore/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars0.githubusercontent.com/u/9191270?v=3&s=460"
+               alt="huangmin" />
+          <p class="site-author-name" itemprop="name">huangmin</p>
+          <p class="site-description motion-element" itemprop="description">求知要踏踏实实,做人要老老实实</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/minhuang0" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huangmin</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"huangm"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
