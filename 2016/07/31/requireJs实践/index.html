@@ -379,7 +379,7 @@ demo">
 <p><code>&lt;script data-main=&quot;main.js&quot; src=&quot;require.js&quot;&gt;&lt;/script&gt;</code>中src是require js的路径,而main.js是入口。也就是说我们需要在main.js里面处理和引入项目中需要的其他js文件。</p>
 <p>下面定义了一个math的模块,里面有add function</p>
 <p>math.js: </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//AMD规范(什么是AMD 参考:http://www.requirejs.cn/docs/whyamd.html)是使用define()方法来进行函数定义,下面定义了一个add方法，并将包含add function的obj返回出去</span></div><div class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span>(<span class="params">x, y</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> x + y;</div><div class="line">    &#125;;</div><div class="line">    <span class="built_in">console</span>.info(<span class="string">"load math js"</span>);</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="attr">add</span>: add</div><div class="line">    &#125;;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//AMD规范(什么是AMD 参考:http://www.requirejs.cn/docs/whyamd.html)是使用define()方法来进行函数定义,下面定义了一个<span class="keyword">add</span><span class="bash">方法，并将包含add <span class="keyword">function</span>的obj返回出去</span></div><div class="line">define(function() &#123;</div><div class="line">    var <span class="keyword">add</span><span class="bash"> = <span class="keyword">function</span>(x, y) &#123;</span></div><div class="line">        return x + y;</div><div class="line">    &#125;;</div><div class="line">    console.info(<span class="string">"load math js"</span>);</div><div class="line">    return &#123;</div><div class="line">        <span class="keyword">add</span><span class="bash">: add</span></div><div class="line">    &#125;;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>上面的math是由AMD规范封装的，所以我们现在在main.js里面正确的引用math这个模块:</p>
 <p>math.js</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>([<span class="string">'math'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">math</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.info(math.add(<span class="number">1</span>, <span class="number">2</span>)); <span class="comment">//6</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
@@ -505,7 +505,7 @@ demo">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-count">61</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -522,7 +522,7 @@ demo">
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">41</span>
+                <span class="site-state-item-count">42</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

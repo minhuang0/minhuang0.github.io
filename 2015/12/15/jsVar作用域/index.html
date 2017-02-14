@@ -384,7 +384,7 @@ js的变量的访问方式是内部函数可以访问外部或全局(不加var�
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">child_name 13 0.3</div><div class="line">parent_name 13 18</div></pre></td></tr></table></figure>
 <p>js查找上下文寻找变量的时候不会自己子方法中去查找,在本方中查询不到则回去外部作用域中去查找。</p>
 <h3 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h3><p>如下例子，<code>var1</code>变量在<code>fun1</code>函数里面，由于并没有<code>var</code>什么，此时的<code>var1</code>实际上已经变量提升了，此时<code>var1</code>的变量也就变成了全局作用域。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun1</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  var1 = <span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun1</span><span class="params">()</span></span>&#123;</div><div class="line">  var1 = <span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -501,7 +501,7 @@ js的变量的访问方式是内部函数可以访问外部或全局(不加var�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-count">61</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -518,7 +518,7 @@ js的变量的访问方式是内部函数可以访问外部或全局(不加var�
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">41</span>
+                <span class="site-state-item-count">42</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

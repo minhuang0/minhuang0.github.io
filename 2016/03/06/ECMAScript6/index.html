@@ -390,7 +390,7 @@
 <li>class</li>
 </ul>
 <p>let,const,class声明的全局变量，不属于全局对象(global,window)的属性</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> b = <span class="number">1</span>;</div><div class="line"><span class="built_in">window</span>.b <span class="comment">// undefined</span></div></pre></td></tr></table></figure>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> b = <span class="number">1</span>;</div><div class="line"><span class="built_in">window</span>.b <span class="comment">// undefined</span></div></pre></td></tr></table></figure>
 <p>node里面的全局变量是global,浏览器里面的是window</p>
 <h3 id="结构赋值"><a href="#结构赋值" class="headerlink" title="结构赋值"></a>结构赋值</h3><p>数组用[]按顺序结构,对象用{}，变量需要与属性同名才能取到正确值而不是undefined</p>
 <p>解构赋值的内部机制，是先找到同名属性，然后再赋给对应的变量<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var &#123; bar, foo &#125; = &#123; <span class="string">foo:</span> <span class="string">"aaa"</span>, <span class="string">bar:</span> <span class="string">"bbb"</span> &#125;; <span class="comment">// 等于下面的例子</span></div><div class="line">var &#123; <span class="string">foo:</span> foo, <span class="string">bar:</span> bar &#125; = &#123; <span class="string">foo:</span> <span class="string">"aaa"</span>, <span class="string">bar:</span> <span class="string">"bbb"</span> &#125;;</div></pre></td></tr></table></figure></p>
@@ -399,7 +399,7 @@
 <p>用途:<br>交换变量值:</p>
 <figure class="highlight accesslog"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">[x,y]</span> = <span class="string">[y,x]</span>;</div></pre></td></tr></table></figure>
 <p>返回一个数组:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">example</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> [a,b,c] = example();</div></pre></td></tr></table></figure>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">example</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">return</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> [a,b,c] = example();</div></pre></td></tr></table></figure>
 <p>提取JSON数组</p>
 <p>参数默认值</p>
 <p>for..of获取key and value</p>
@@ -469,7 +469,7 @@
 <h3 id="函数的扩展"><a href="#函数的扩展" class="headerlink" title="函数的扩展"></a>函数的扩展</h3><p><strong>函数的默认值</strong></p>
 <p>在ES5中当函数的默认值一般都用<code>||</code>表达式,但在输入值为<code>false</code>的情况则就不能了，可以通过三元表达式来完成 <code>x === false ? true : false</code></p>
 <p>ES6设置函数的默认值是直接写在参数定义后面</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Point</span>(<span class="params">x, y = <span class="number">5</span></span>)</span>&#123;</div><div class="line">  <span class="comment">// let x = 1; //注意此时的x和y都不能用let,const再次声明</span></div><div class="line">  <span class="comment">// 这种情况下能够很清晰的就知道y是不必须写的,x必须传递</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Point</span><span class="params">(x, y = 5)</span></span>&#123;</div><div class="line">  <span class="comment">// let x = 1; //注意此时的x和y都不能用let,const再次声明</span></div><div class="line">  <span class="comment">// 这种情况下能够很清晰的就知道y是不必须写的,x必须传递</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>参数与解构赋值一起使用</p>
 <p>箭头函数与变量解构结合使用</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> full = <span class="function">(<span class="params">&#123;first, last&#125;</span>) =&gt;</span> first + <span class="string">" "</span> + last;</div><div class="line"></div><div class="line"><span class="comment">//等于</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">full</span>(<span class="params">person</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> person.first + <span class="string">" "</span> + person.last;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -544,8 +544,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/03/06/typescriptGettingStart/" rel="prev" title="typescript getting start">
-                typescript getting start <i class="fa fa-chevron-right"></i>
+              <a href="/2016/03/28/在Windows7上面安装ubuntu系统/" rel="prev" title="在Windows7上面安装ubuntu系统">
+                在Windows7上面安装ubuntu系统 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -618,7 +618,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-count">61</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -635,7 +635,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">41</span>
+                <span class="site-state-item-count">42</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

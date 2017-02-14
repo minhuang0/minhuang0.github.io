@@ -389,11 +389,11 @@ webpack getting started">
 <p>接在在webpack环境准备好后安装react</p>
 <p>install react:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm <span class="keyword">install</span> react <span class="comment">--save</span></div></pre></td></tr></table></figure></p>
 <p>使用react在编写jsx或js的文件是需要引用</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</div><div class="line"><span class="keyword">import</span> &#123; render &#125; <span class="keyword">from</span> <span class="string">'react-dom'</span>; <span class="comment">//调用了这里为了方便直接将render引入进来了,就不需要ReactDom.render方法</span></div></pre></td></tr></table></figure>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</div><div class="line"><span class="keyword">import</span> &#123; render &#125; <span class="keyword">from</span> <span class="string">'react-dom'</span>; <span class="comment">//调用了这里为了方便直接将render引入进来了,就不需要ReactDom.render方法</span></div></pre></td></tr></table></figure>
 <p>在编写代码的时候会用到es6,scss，于是还添加了babel,sass的loaders</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">module</span>: &#123;</div><div class="line">    <span class="attribute">loaders</span>: [&#123;</div><div class="line">        test: /\.js|jsx$/,</div><div class="line">        exclude: /(node_modules|bower_components)/,</div><div class="line">        loader: <span class="string">'babel'</span>,</div><div class="line">        query: &#123;</div><div class="line">            presets: [<span class="string">'react'</span>, <span class="string">'es2015'</span>]</div><div class="line">        &#125;</div><div class="line">    &#125;, &#123;</div><div class="line">        <span class="attribute">test</span>: /\.css$/,</div><div class="line">        loader: <span class="string">"style!css"</span></div><div class="line">    &#125;, &#123;</div><div class="line">        <span class="attribute">test</span>: /\.scss$/,</div><div class="line">        loader: <span class="string">"style!css!sass"</span></div><div class="line">    &#125;, &#123;</div><div class="line">        <span class="attribute">test</span>: /\.(jpg|png)$/,</div><div class="line">        loader: <span class="string">"url?limit=8192"</span></div><div class="line">    &#125;]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>在jsx中引入scss可以使用require的方式</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>(<span class="string">"../css/comm.scss"</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">require(<span class="string">"../css/comm.scss"</span>)<span class="comment">;</span></div></pre></td></tr></table></figure>
 <p>目前遇到问题：</p>
 <ul>
 <li>jquery和jquery-ui的引用问题</li>
@@ -526,7 +526,7 @@ webpack getting started">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-count">61</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -543,7 +543,7 @@ webpack getting started">
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">41</span>
+                <span class="site-state-item-count">42</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
