@@ -1649,7 +1649,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://huangmin.me/2016/07/15/gulp_connect使用/">
+  <link itemprop="mainEntityOfPage" href="http://huangmin.me/2016/07/15/js中的闭包/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="huangmin">
@@ -1674,8 +1674,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/07/15/gulp_connect使用/" itemprop="url">
-                  使用gulp_connect开启server
+                <a class="post-title-link" href="/2016/07/15/js中的闭包/" itemprop="url">
+                  js中闭包的理解
                 </a>
               
             
@@ -1723,8 +1723,8 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2016/07/15/gulp_connect使用/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/15/gulp_connect使用/" itemprop="commentCount"></span>
+                <a href="/2016/07/15/js中的闭包/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/15/js中的闭包/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1751,13 +1751,11 @@
 
       
         
-          <p>本文中提到的是<a href="https://github.com/AveVlad/gulp-connect">gulp-connect</a>这个gulp插件，能够在开发web项目的时候，开启一个本地server,并监听文件的改动，自动刷新网页。对于我来说，一保存就能够自动刷新浏览器，少按了一次Ctrl + R刷新页面是很爽的。</p>
-<p>安装步骤:</p>
-<figure class="highlight q"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm install --<span class="built_in">save</span>-<span class="built_in">dev</span> gulp</div><div class="line">npm install --<span class="built_in">save</span>-<span class="built_in">dev</span> gulp-connect</div></pre></td></tr></table></figure>
-<p>至于为什么要安装在本地而不是全局的，在<a href="http://stackoverflow.com/questions/22115400/why-do-we-need-to-install-gulp-globally-and-locally">stackoverflow</a>上面有个很好的回答，大概意思指安装在全局的时候共用一个命令,给项目带来了更多依赖。而安装在本地有package.json来保存项目该用的版本信息，在npm安装的时候会先搜索本地全局是否存在才会去远程下载。<br>
+          <p><strong><em>闭包的作用是让js能够从外部函数可以访问定义在内部函数中的变量,并且能够让这些值存在内存当中并进行读取、修改</em></strong></p>
+<p>可以把闭包理解为定义在函数（fatherFunction）内部的子函数(childFunction)，我们可以通过这个方法来访问该方法fatherFunction中的局部变量</p>
           <!--noindex-->
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/15/gulp_connect使用/#more" rel="contents">
+            <a class="btn" href="/2016/07/15/js中的闭包/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
