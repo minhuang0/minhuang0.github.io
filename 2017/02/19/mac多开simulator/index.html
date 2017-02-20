@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="vue," />
+  <meta name="keywords" content="解决方案,mac," />
 
 
 
@@ -84,16 +84,22 @@
 
 
 
-<meta name="description" content="最近在使用vue写了一个项目，但目前来说就是一个公共页面，以后会陆续增加。碰到了预想不到的问题和坑，总体而言还是很有收获。">
+<meta name="description" content="在开发过程中，可能有多个版本的APP需要测试，可以通过在模拟器上安装多个APP的方式，不过这样的话需要打包APP的同学的帮助。我们能不能通过简单的方式让自己能够测到多版本的APP呢。
+通过开多个simulator的方式可以在mac上达到这个目的, 值得一提的是chrome上面也有插件(我用的是mobile browser emulator)，可以开多个web端的模拟屏幕。
+核心的原理关键的地方是通">
 <meta property="og:type" content="article">
-<meta property="og:title" content="最近写公共组件的反思">
-<meta property="og:url" content="http://huangmin.me/2017/01/19/最近写公共组件的反思/index.html">
+<meta property="og:title" content="mac多开simulator.md">
+<meta property="og:url" content="http://huangmin.me/2017/02/19/mac多开simulator/index.html">
 <meta property="og:site_name" content="Huangmin’s blog">
-<meta property="og:description" content="最近在使用vue写了一个项目，但目前来说就是一个公共页面，以后会陆续增加。碰到了预想不到的问题和坑，总体而言还是很有收获。">
-<meta property="og:updated_time" content="2017-02-14T09:36:47.000Z">
+<meta property="og:description" content="在开发过程中，可能有多个版本的APP需要测试，可以通过在模拟器上安装多个APP的方式，不过这样的话需要打包APP的同学的帮助。我们能不能通过简单的方式让自己能够测到多版本的APP呢。
+通过开多个simulator的方式可以在mac上达到这个目的, 值得一提的是chrome上面也有插件(我用的是mobile browser emulator)，可以开多个web端的模拟屏幕。
+核心的原理关键的地方是通">
+<meta property="og:updated_time" content="2017-02-20T11:40:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="最近写公共组件的反思">
-<meta name="twitter:description" content="最近在使用vue写了一个项目，但目前来说就是一个公共页面，以后会陆续增加。碰到了预想不到的问题和坑，总体而言还是很有收获。">
+<meta name="twitter:title" content="mac多开simulator.md">
+<meta name="twitter:description" content="在开发过程中，可能有多个版本的APP需要测试，可以通过在模拟器上安装多个APP的方式，不过这样的话需要打包APP的同学的帮助。我们能不能通过简单的方式让自己能够测到多版本的APP呢。
+通过开多个simulator的方式可以在mac上达到这个目的, 值得一提的是chrome上面也有插件(我用的是mobile browser emulator)，可以开多个web端的模拟屏幕。
+核心的原理关键的地方是通">
 
 
 
@@ -121,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://huangmin.me/2017/01/19/最近写公共组件的反思/"/>
+  <link rel="canonical" href="http://huangmin.me/2017/02/19/mac多开simulator/"/>
 
 
 
 
 
-  <title> 最近写公共组件的反思 | Huangmin’s blog </title>
+  <title> mac多开simulator.md | Huangmin’s blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -268,7 +274,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://huangmin.me/2017/01/19/最近写公共组件的反思/">
+  <link itemprop="mainEntityOfPage" href="http://huangmin.me/2017/02/19/mac多开simulator/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="huangmin">
@@ -292,7 +298,7 @@
             
             
               
-                最近写公共组件的反思
+                mac多开simulator.md
               
             
           </h1>
@@ -305,8 +311,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-19T00:00:00+08:00">
-                2017-01-19
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-19T00:00:00+08:00">
+                2017-02-19
               </time>
             
 
@@ -324,8 +330,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/思考/" itemprop="url" rel="index">
-                    <span itemprop="name">思考</span>
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
                   </a>
                 </span>
 
@@ -339,8 +345,8 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2017/01/19/最近写公共组件的反思/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/19/最近写公共组件的反思/" itemprop="commentCount"></span>
+                <a href="/2017/02/19/mac多开simulator/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/19/mac多开simulator/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -366,51 +372,24 @@
       
 
       
-        <p>最近在使用vue写了一个项目，但目前来说就是一个公共页面，以后会陆续增加。碰到了预想不到的问题和坑，总体而言还是很有收获。</p>
-<a id="more"></a>
-<ul>
-<li>初期的项目估时<ul>
-<li>项目估时实际上是比较紧凑的，估时开始的时候按照的是用于一个业务线的估时方式，而且没给自己估计buffer时间；</li>
-<li>后面改为了通用页面，写出组件方式被多个业务线引用，整体的一个估时并没有变化。所以开发的这一周基本天天加班。好在是后期分开了部分需求，项目没有delay.</li>
-<li>后续的话需要多考虑下这些内容以及需求变更带来的变化。</li>
-</ul>
-</li>
-<li>沟通问题<ul>
-<li>开始需求不统一，没法进行开发，协调三方业务线的开发,PM，对于一个新人来说确实困难重重。</li>
-<li>后续大家都熟悉后沟通起来比较顺畅，但关于一些关键问题最好是在群里周知，不要私聊，免得出现问题。</li>
-</ul>
-</li>
-<li>项目的构建<ul>
-<li>项目的构建使用的脚手架，底层迁移的已有项目。在特殊的地方做一些修改，这一块还是比较顺利。</li>
-<li>一个好的底层真的能省好多事情啊！</li>
-</ul>
-</li>
-<li>皮肤的按需加载<ul>
-<li>做这个花了1.5PD, 初期考虑通过webpack编译成静态文件，然后在js中按需加载。后面没发找到文件每次打包后的hash就放弃了。其实可以同过一段脚本或者js插件去进行替换。</li>
-<li>后面通过chunk的方式去实现，没有仔细看官方文档，打包出来的chunk都会被包含在一个文件中，达不到目的。后面重新理了一遍文档知道是webpack.optimize.AggressiveMergingPlugin这个pluging将文件都打包到一起了.</li>
-</ul>
-</li>
-<li>业务线的底层统一<ul>
-<li>与别的业务线交互的时候碰到了底层不一致的问题，开始做的是为不同业务线兼容，后面改成了提供几种业务线的底层实现，具体的区分交给业务线去区分。期待年后将底层统一。</li>
-</ul>
-</li>
-<li>本身页面的布局<ul>
-<li>升级到vue2.0, 组件的最外层需要有一个div包裹着，不能像vue1一样多个div或者组件并列了。所以这一块实际上具体业务没有和一些通用的组件区分开来，到时候面出现了个怪异的问题花费了不少时间。</li>
-</ul>
-</li>
-<li>Vue<ul>
-<li>有一些坑，例如后添加的属性不会被监听，数组不会被监听。数据传递时方法的传递需要使用$emit或者是广播的这种形式。</li>
-</ul>
-</li>
-<li>被PM，RD催<ul>
-<li>在解决问题的时候总是被打断, 下次排个优先级，不重要的先让对方等等。</li>
-</ul>
-</li>
-<li>同事的帮助<ul>
-<li>有些地方不是很熟悉，还是感谢同事的帮助</li>
-</ul>
-</li>
-</ul>
+        <p>在开发过程中，可能有多个版本的APP需要测试，可以通过在模拟器上安装多个APP的方式，不过这样的话需要打包APP的同学的帮助。我们能不能通过简单的方式让自己能够测到多版本的APP呢。</p>
+<p>通过开多个simulator的方式可以在mac上达到这个目的, 值得一提的是chrome上面也有插件(我用的是mobile browser emulator)，可以开多个web端的模拟屏幕。</p>
+<h3 id="核心的原理"><a href="#核心的原理" class="headerlink" title="核心的原理"></a>核心的原理</h3><p>关键的地方是通过终端命令:</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">open -n <span class="regexp">/Applications/</span>Xcode.app<span class="regexp">/Contents/</span>Developer<span class="regexp">/Applications/</span>Simulator.app</div></pre></td></tr></table></figure>
+<p>一步一步解析<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">open</span> -<span class="keyword">n</span> Simulator.<span class="keyword">app</span>/</div></pre></td></tr></table></figure></p>
+<p>这个命令多开一个Simuator,可以通过<code>open --help</code>的方式看看 <code>-n</code> 的参数是干嘛用的</p>
+<figure class="highlight ceylon"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-n, --<span class="keyword">new</span>         Open a <span class="keyword">new</span> instance <span class="keyword">of</span> the application even <span class="keyword">if</span> one <span class="keyword">is</span> already running.</div></pre></td></tr></table></figure>
+<p>当有一个已经在运行的应用时打开一个新的应用。</p>
+<p>提示Unable to boot device in current state: Booted 时请看下面</p>
+<h3 id="切换模拟器device"><a href="#切换模拟器device" class="headerlink" title="切换模拟器device"></a>切换模拟器device</h3><p>点击确认，修改device即可，具体步骤为:</p>
+<p>Simulator菜单栏 -&gt; HardWare -&gt; Device -&gt; IOS 10.1(这里是你的版本) -&gt; iPhone 7 (这里是自己想要切换的模拟器机型)</p>
+<h3 id="保存成一个sh文件"><a href="#保存成一个sh文件" class="headerlink" title="保存成一个sh文件"></a>保存成一个sh文件</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">echo '#!/bin/<span class="keyword">sh</span></div><div class="line"><span class="keyword">open</span> -<span class="keyword">n</span> /Applications/Xcode.<span class="keyword">app</span>/Contents/Developer/Applications/Simulator.<span class="keyword">app</span>/' &gt;&gt; openSimulator.<span class="keyword">sh</span></div></pre></td></tr></table></figure>
+<p>可以通过cat打印出来</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">cat</span> openSimulator.<span class="keyword">sh</span></div></pre></td></tr></table></figure>
+<p>显示为:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/sh</span></div><div class="line">open -n /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/</div></pre></td></tr></table></figure></p>
+<p>下次执行时可以直接通过sh执行该脚本即可:</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">sh</span> openSimulator.<span class="keyword">sh</span></div></pre></td></tr></table></figure>
+<p>或者其他的方式运行脚本, <a href="http://stackoverflow.com/questions/733824/how-to-run-a-shell-script-on-a-unix-console-or-mac-terminal" target="_blank" rel="external">link</a> , 甚至你可以写成bash alias都可以</p>
 
       
     </div>
@@ -434,7 +413,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/vue/" rel="tag"># vue</a>
+            <a href="/tags/解决方案/" rel="tag"># 解决方案</a>
+          
+            <a href="/tags/mac/" rel="tag"># mac</a>
           
         </div>
       
@@ -443,8 +424,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/19/simulate_install_.app_file/" rel="next" title="在simulate上面安装.app文件">
-                <i class="fa fa-chevron-left"></i> 在simulate上面安装.app文件
+              <a href="/2017/02/14/安装Charles代理/" rel="next" title="安装Charles代理">
+                <i class="fa fa-chevron-left"></i> 安装Charles代理
               </a>
             
           </div>
@@ -452,10 +433,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/12/web异步加载主题文件/" rel="prev" title="异步加载主题文件">
-                异步加载主题文件 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -481,8 +458,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/01/19/最近写公共组件的反思/"
-           data-title="最近写公共组件的反思" data-url="http://huangmin.me/2017/01/19/最近写公共组件的反思/">
+      <div class="ds-thread" data-thread-key="2017/02/19/mac多开simulator/"
+           data-title="mac多开simulator.md" data-url="http://huangmin.me/2017/02/19/mac多开simulator/">
       </div>
     
   </div>
@@ -506,8 +483,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://avatars0.githubusercontent.com/u/9191270?v=3&s=460"
@@ -571,6 +557,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#核心的原理"><span class="nav-number">1.</span> <span class="nav-text">核心的原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#切换模拟器device"><span class="nav-number">2.</span> <span class="nav-text">切换模拟器device</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保存成一个sh文件"><span class="nav-number">3.</span> <span class="nav-text">保存成一个sh文件</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
