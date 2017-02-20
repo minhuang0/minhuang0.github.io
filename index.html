@@ -295,7 +295,7 @@
               
                 
                 <a class="post-title-link" href="/2017/02/19/mac多开simulator/" itemprop="url">
-                  mac多开simulator.md
+                  mac多开IOS模拟器(ios simulator)
                 </a>
               
             
@@ -371,27 +371,17 @@
 
       
         
-          
-            <p>在开发过程中，可能有多个版本的APP需要测试，可以通过在模拟器上安装多个APP的方式，不过这样的话需要打包APP的同学的帮助。我们能不能通过简单的方式让自己能够测到多版本的APP呢。</p>
+          <p>在开发过程中，可能有多个版本的APP需要测试，可以通过在模拟器上安装多个APP的方式，不过这样的话需要打包APP的同学的帮助。我们能不能通过简单的方式让自己能够测到多版本的APP呢。</p>
 <p>通过开多个simulator的方式可以在mac上达到这个目的, 值得一提的是chrome上面也有插件(我用的是mobile browser emulator)，可以开多个web端的模拟屏幕。</p>
 <h3 id="核心的原理"><a href="#核心的原理" class="headerlink" title="核心的原理"></a>核心的原理</h3><p>关键的地方是通过终端命令:</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">open -n <span class="regexp">/Applications/</span>Xcode.app<span class="regexp">/Contents/</span>Developer<span class="regexp">/Applications/</span>Simulator.app</div></pre></td></tr></table></figure>
-<p>一步一步解析<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">open</span> -<span class="keyword">n</span> Simulator.<span class="keyword">app</span>/</div></pre></td></tr></table></figure></p>
-<p>这个命令多开一个Simuator,可以通过<code>open --help</code>的方式看看 <code>-n</code> 的参数是干嘛用的</p>
-<figure class="highlight ceylon"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-n, --<span class="keyword">new</span>         Open a <span class="keyword">new</span> instance <span class="keyword">of</span> the application even <span class="keyword">if</span> one <span class="keyword">is</span> already running.</div></pre></td></tr></table></figure>
-<p>当有一个已经在运行的应用时打开一个新的应用。</p>
-<p>提示Unable to boot device in current state: Booted 时请看下面</p>
-<h3 id="切换模拟器device"><a href="#切换模拟器device" class="headerlink" title="切换模拟器device"></a>切换模拟器device</h3><p>点击确认，修改device即可，具体步骤为:</p>
-<p>Simulator菜单栏 -&gt; HardWare -&gt; Device -&gt; IOS 10.1(这里是你的版本) -&gt; iPhone 7 (这里是自己想要切换的模拟器机型)</p>
-<h3 id="保存成一个sh文件"><a href="#保存成一个sh文件" class="headerlink" title="保存成一个sh文件"></a>保存成一个sh文件</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">echo '#!/bin/<span class="keyword">sh</span></div><div class="line"><span class="keyword">open</span> -<span class="keyword">n</span> /Applications/Xcode.<span class="keyword">app</span>/Contents/Developer/Applications/Simulator.<span class="keyword">app</span>/' &gt;&gt; openSimulator.<span class="keyword">sh</span></div></pre></td></tr></table></figure>
-<p>可以通过cat打印出来</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">cat</span> openSimulator.<span class="keyword">sh</span></div></pre></td></tr></table></figure>
-<p>显示为:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/sh</span></div><div class="line">open -n /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/</div></pre></td></tr></table></figure></p>
-<p>下次执行时可以直接通过sh执行该脚本即可:</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">sh</span> openSimulator.<span class="keyword">sh</span></div></pre></td></tr></table></figure>
-<p>或者其他的方式运行脚本, <a href="http://stackoverflow.com/questions/733824/how-to-run-a-shell-script-on-a-unix-console-or-mac-terminal" target="_blank" rel="external">link</a> , 甚至你可以写成bash alias都可以</p>
-
-          
+          <!--noindex-->
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/02/19/mac多开simulator/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -732,6 +722,159 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://huangmin.me/2017/02/12/web异步加载主题文件/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="huangmin">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/9191270?v=3&s=460">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Huangmin’s blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Huangmin’s blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/12/web异步加载主题文件/" itemprop="url">
+                  异步加载主题文件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-12T00:00:00+08:00">
+                2017-02-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2017/02/12/web异步加载主题文件/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/12/web异步加载主题文件/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>在特定业务场景下hybrid web会根据不同的容器来加载不同的主题，这里记录了我在这里遇到的一些坑以及一些解决方案</p>
+<p>背景情况: webpack构建项目, 能够根据url判断出页面的容器, 如appvessel<br>需求: 根据appvessel来分别加载不一样的css, 并将相同主题的css打包在一起达到引用效果</p>
+<p>下面是我尝试的过程，过程中的代码缺少上下文，这里指记录思路，可以略过过程看最后的实现方案:</p>
+<p>开始的时候分析需要解决的问题:</p>
+<ol>
+<li>webpack打包生成不同主题的css文件</li>
+<li>如何动态引用主题对应的css文件</li>
+</ol>
+          <!--noindex-->
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/02/12/web异步加载主题文件/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://huangmin.me/2017/02/12/git合并commit/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -852,159 +995,6 @@
 <p>这一步是撤销rebase的操作，回到rebase之前的状态</p>
 
           
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://huangmin.me/2017/02/12/web异步加载主题文件/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="huangmin">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/9191270?v=3&s=460">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Huangmin’s blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Huangmin’s blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/12/web异步加载主题文件/" itemprop="url">
-                  异步加载主题文件
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-12T00:00:00+08:00">
-                2017-02-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/programming/" itemprop="url" rel="index">
-                    <span itemprop="name">编程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <a href="/2017/02/12/web异步加载主题文件/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/12/web异步加载主题文件/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>在特定业务场景下hybrid web会根据不同的容器来加载不同的主题，这里记录了我在这里遇到的一些坑以及一些解决方案</p>
-<p>背景情况: webpack构建项目, 能够根据url判断出页面的容器, 如appvessel<br>需求: 根据appvessel来分别加载不一样的css, 并将相同主题的css打包在一起达到引用效果</p>
-<p>下面是我尝试的过程，过程中的代码缺少上下文，这里指记录思路，可以略过过程看最后的实现方案:</p>
-<p>开始的时候分析需要解决的问题:</p>
-<ol>
-<li>webpack打包生成不同主题的css文件</li>
-<li>如何动态引用主题对应的css文件</li>
-</ol>
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/02/12/web异步加载主题文件/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
